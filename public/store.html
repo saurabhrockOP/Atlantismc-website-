@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlantisMC Store | Lifesteal Perks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" style="color: var(--cyan-glow); text-decoration: none; font-size: 0.85rem; font-weight: bold;">← Return to Main Page</a>
+        <h1 style="margin-top: 10px;">Lifesteal Perks Webstore</h1>
+        <p style="font-size: 0.9rem; margin-top: 4px; color: var(--text-slate);">
+            All rank tiers feature a pre-calculated <span class="discount">20% Discount</span> markdown applied from previous store cycles!
+        </p>
+    </header>
+
+    <main style="width:100%; max-width:650px;">
+        <h2 style="font-size: 1.25rem; color: var(--gold-alert); margin-bottom: 12px;">Rank Selection</h2>
+        <div class="store-grid">
+            <div class="card">
+                <h3>Olympian Tier</h3>
+                <p class="price">₹250 <del>₹312</del></p>
+                <button class="btn" onclick="openPaymentGateway('Olympian Rank', 250)">Purchase Tier</button>
+            </div>
+            <div class="card">
+                <h3>Demigod Tier</h3>
+                <p class="price">₹180 <del>₹225</del></p>
+                <button class="btn" onclick="openPaymentGateway('Demigod Rank', 180)">Purchase Tier</button>
+            </div>
+            <div class="card">
+                <h3>Spartan Tier</h3>
+                <p class="price">₹120 <del>₹150</del></p>
+                <button class="btn" onclick="openPaymentGateway('Spartan Rank', 120)">Purchase Tier</button>
+            </div>
+            <div class="card" style="border-color: var(--gold-alert);">
+                <p style="color: var(--gold-alert); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 2px;">BEST BUDGET OPTION</p>
+                <h3>Titan Tier</h3>
+                <p class="price">₹80 <del>₹100</del></p>
+                <button class="btn" onclick="openPaymentGateway('Titan Rank', 80)" style="background: var(--gold-alert); color: #000;">Purchase Tier</button>
+            </div>
+        </div>
+
+        <h2 style="font-size: 1.25rem; color: var(--gold-alert); margin: 20px 0 12px 0;">Crate Core Matrix</h2>
+        <div class="store-grid">
+            <div class="card">
+                <h3>Prime Crate Key</h3>
+                <p class="price">₹50 <span style="font-size:0.75rem; color:var(--text-slate);">/ each</span></p>
+                <div class="qty-control">
+                    <label>Quantity Selector:</label>
+                    <input type="number" id="amt-prime" class="qty-input" value="1" min="1">
+                </div>
+                <button class="btn" onclick="openKeyGateway('Prime Crate Key', 50, 'amt-prime')">Acquire Keys</button>
+            </div>
+            <div class="card">
+                <h3>Crimson Crate Key</h3>
+                <p class="price">₹40 <span style="font-size:0.75rem; color:var(--text-slate);">/ each</span></p>
+                <div class="qty-control">
+                    <label>Quantity Selector:</label>
+                    <input type="number" id="amt-crimson" class="qty-input" value="1" min="1">
+                </div>
+                <button class="btn" onclick="openKeyGateway('Crimson Crate Key', 40, 'amt-crimson')">Acquire Keys</button>
+            </div>
+            <div class="card">
+                <h3>Amethyst Crate Key</h3>
+                <p class="price">₹25 <span style="font-size:0.75rem; color:var(--text-slate);">/ each</span></p>
+                <div class="qty-control">
+                    <label>Quantity Selector:</label>
+                    <input type="number" id="amt-amethyst" class="qty-input" value="1" min="1">
+                </div>
+                <button class="btn" onclick="openKeyGateway('Amethyst Crate Key', 25, 'amt-amethyst')">Acquire Keys</button>
+            </div>
+            <div class="card">
+                <h3>Gold Crate Key</h3>
+                <p class="price">₹15 <span style="font-size:0.75rem; color:var(--text-slate);">/ each</span></p>
+                <div class="qty-control">
+                    <label>Quantity Selector:</label>
+                    <input type="number" id="amt-gold" class="qty-input" value="1" min="1">
+                </div>
+                <button class="btn" onclick="openKeyGateway('Gold Crate Key', 15, 'amt-gold')">Acquire Keys</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Element mapping out Screenshot_2026-05-28-13-23-20-172_com.android.chrome.jpg specifications -->
+    <div id="checkoutPortal" class="modal-overlay">
+        <div class="modal-container">
+            <span class="modal-close" onclick="closePortal()">&times;</span>
+            <div class="modal-title" id="portalTitle">Purchase Master Rank</div>
+            
+            <form id="purchaseForm">
+                <div class="form-field">
+                    <label>Selected Item</label>
+                    <input type="text" id="targetItem" class="form-input" style="color: var(--text-slate);" readonly>
+                </div>
+                <div class="form-field">
+                    <label>Price</label>
+                    <input type="text" id="targetPrice" class="form-input" style="color: var(--cyan-glow); font-weight: bold;" readonly>
+                </div>
+                <div class="form-field">
+                    <label>Username *</label>
+                    <input type="text" id="form-ign" class="form-input" placeholder="Enter your Minecraft username" required>
+                </div>
+                <div class="form-field">
+                    <label>Email *</label>
+                    <input type="email" id="form-email" class="form-input" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-field">
+                    <label>Discord User ID *</label>
+                    <input type="text" id="form-discord" class="form-input" placeholder="e.g., username#1234" required>
+                </div>
+                <div class="form-field">
+                    <label>Phone Number (Optional)</label>
+                    <input type="text" id="form-phone" class="form-input" placeholder="+91 1234567890">
+                </div>
+
+                <div id="qrVerificationModule" class="qr-section" style="display: none;">
+                    <p style="font-size: 0.8rem; color: var(--gold-alert); margin-bottom: 12px;">Scan the QR layout below using Fampay to proceed:</p>
+                    <!-- Referencing the exact image asset filename provided -->
+                    <img src="1000300514.jpg" alt="Fampay Payment QR Terminal" class="qr-image">
+                    <p style="font-size: 0.75rem; color: var(--text-slate); margin-top: 10px;">Once complete, click 'I Have Paid' to register data logs.</p>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-back" onclick="closePortal()">Cancel</button>
+                    <button type="button" id="paymentTransitionBtn" class="btn btn-go" onclick="showQRTerminal()">Proceed to Payment</button>
+                    <button type="submit" id="finalSubmitBtn" class="btn btn-go" style="display: none; background: #10b981; color: #fff;">I Have Paid</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let chosenBundleName = "";
+        let finalCalculatedCost = 0;
+
+        function openPaymentGateway(name, cost) {
+            chosenBundleName = name;
+            finalCalculatedCost = cost;
+            renderModalInterface();
+        }
+
+        function openKeyGateway(keyType, pricePerUnit, quantityFieldId) {
+            const count = parseInt(document.getElementById(quantityFieldId).value) || 1;
+            chosenBundleName = count + "x " + keyType;
+            finalCalculatedCost = pricePerUnit * count;
+            renderModalInterface();
+        }
+
+        function renderModalInterface() {
+            document.getElementById('portalTitle').innerText = "Purchase " + chosenBundleName;
+            document.getElementById('targetItem').value = chosenBundleName;
+            document.getElementById('targetPrice').value = "₹" + finalCalculatedCost;
+            document.getElementById('checkoutPortal').style.display = 'block';
+        }
+
+        function closePortal() {
+            document.getElementById('checkoutPortal').style.display = 'none';
+            document.getElementById('qrVerificationModule').style.display = 'none';
+            document.getElementById('paymentTransitionBtn').style.display = 'block';
+            document.getElementById('finalSubmitBtn').style.display = 'none';
+            document.getElementById('purchaseForm').reset();
+        }
+
+        function showQRTerminal() {
+            if(!document.getElementById('form-ign').value.trim() || !document.getElementById('form-email').value.trim() || !document.getElementById('form-discord').value.trim()) {
+                alert("Please fill in all mandatory processing indicators marked with (*).");
+                return;
+            }
+            document.getElementById('qrVerificationModule').style.display = 'block';
+            document.getElementById('paymentTransitionBtn').style.display = 'none';
+            document.getElementById('finalSubmitBtn').style.display = 'block';
+        }
+
+        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const packedForm = {
+                username: document.getElementById('form-ign').value,
+                email: document.getElementById('form-email').value,
+                discord: document.getElementById('form-discord').value,
+                phone: document.getElementById('form-phone').value,
+                item: chosenBundleName,
+                price: finalCalculatedCost
+            };
+
+            fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(packedForm)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    alert("Transaction request stored! Internal administration teams will crosscheck logs and fulfill items shortly.");
+                    closePortal();
+                } else {
+                    alert("Data error encountered during submission.");
+                }
+            })
+            .catch(() => {
+                alert("Connection loss to storage terminal.");
+            });
+        });
+    </script>
+</body>
+</html>
