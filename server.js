@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Discord Webhook configuration feature
 // OPTIONAL: Paste your Discord channel webhook URL between the single quotes below to get instant notifications!
-const DISCORD_WEBHOOK_URL = ''; 
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1509503321730322533/_5O-ubMnc25DAH2lXU4TMhCMLTOkJAvudcqA-bN_PlPGHXCnmwC4gW-X1NLvovq9fZ3g'; 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
