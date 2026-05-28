@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlantisMC Network | Official Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <!-- Referencing the exact image asset filename provided -->
+        <img src="1000292141.png" alt="AtlantisMC Network Logo" class="logo">
+        <h1>AtlantisMC Network</h1>
+        <p style="color: var(--text-slate); margin-top: 4px; font-size: 0.9rem;">Java Edition Lifesteal SMP Network</p>
+        
+        <div style="background: #0b1325; border: 1px solid #1e293b; border-radius: 10px; padding: 12px; margin-top: 20px;">
+            <p style="font-size: 0.95rem;">Server Address: <span class="highlight">play.atlantismc.fun</span></p>
+            <p style="font-size: 0.9rem; margin-top: 5px;">Active Players: <span id="playerSlots" class="highlight">Querying...</span></p>
+        </div>
+    </header>
+
+    <main class="buttons-stack">
+        <a href="store.html" class="btn">🛒 Browse Lifesteal Store</a>
+        <a href="https://discord.gg/yUP4npQADB" target="_blank" class="btn discord">💬 Connect via Discord</a>
+        <a href="https://topg.org/minecraft-servers/server-679412" target="_blank" class="btn vote">👍 Vote on TopG</a>
+    </main>
+
+    <script>
+        function updateServerStatus() {
+            fetch('https://api.mcsrvstat.us/3/play.atlantismc.fun')
+                .then(response => response.json())
+                .then(data => {
+                    if(data.online) {
+                        document.getElementById('playerSlots').innerText = data.players.online + " / " + data.players.max;
+                    } else {
+                        document.getElementById('playerSlots').innerText = "0 (Offline)";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('playerSlots').innerText = "Offline Mode";
+                });
+        }
+        updateServerStatus();
+        setInterval(updateServerStatus, 30000); // Refreshes player count automatically every 30 seconds
+    </script>
+</body>
+</html>
