@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Discord Webhook configuration feature
-// OPTIONAL: Paste your Discord channel webhook URL between the single quotes below to get instant notifications!
+// Your provided webhook URL is actively configured below:
 const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1509503321730322533/_5O-ubMnc25DAH2lXU4TMhCMLTOkJAvudcqA-bN_PlPGHXCnmwC4gW-X1NLvovq9fZ3g'; 
 
 app.use(express.json());
@@ -164,4 +164,4 @@ app.get('/admin', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`[SYSTEM RUNNING]: AtlantisMC Network backend active on cloud port ${PORT}`));
-          
+
