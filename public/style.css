@@ -153,20 +153,36 @@ h1 {
     font-size: 1rem;
 }
 
-/* Modal UI based on the Reference Images */
+/* ==========================================
+   UPDATED MODAL UI (WITH SCROLL FIX)
+   ========================================== */
+
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
     background: rgba(0, 0, 0, 0.85);
     z-index: 1000;
+    
+    /* SCROLL FIX PROPERTIES */
+    overflow-y: auto; 
+    padding: 40px 0; 
+    -webkit-overflow-scrolling: touch; 
 }
 
 .modal-container {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 92%; max-width: 400px;
+    /* SCROLL FIX PROPERTIES */
+    position: relative; 
+    margin: 0 auto; 
+    transform: none; 
+    top: 0; 
+    left: 0;
+    
+    width: 92%; 
+    max-width: 400px;
     background: #09101d;
     border: 1px solid #142a4a;
     border-radius: 14px;
@@ -240,3 +256,4 @@ h1 {
 
 .btn-back { background: #1e293b; color: #fff; flex: 1; }
 .btn-go { background: var(--cyan-glow); color: #000; flex: 2; font-weight: bold; }
+    
