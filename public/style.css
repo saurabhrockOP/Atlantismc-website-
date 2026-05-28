@@ -1,0 +1,242 @@
+:root {
+    --bg-main: #060a13;
+    --bg-surface: #0b1325;
+    --bg-input: #04070d;
+    --cyan-glow: #00d2ff;
+    --gold-alert: #f59e0b;
+    --text-white: #f8fafc;
+    --text-slate: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-white);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin: 25px 0;
+    width: 100%;
+    max-width: 550px;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.35));
+}
+
+h1 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.highlight {
+    color: var(--cyan-glow);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.2);
+}
+
+.discount {
+    color: var(--gold-alert);
+    font-weight: bold;
+}
+
+/* Home Interface Buttons Layout */
+.buttons-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 380px;
+    margin-top: 10px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background: #0284c7;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn.discord { background: #5865F2; }
+.btn.vote { background: #10b981; }
+
+/* Store Grid Framework */
+.store-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+@media(min-width: 480px) {
+    .store-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.card {
+    background: var(--bg-surface);
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    color: var(--text-white);
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 12px 0;
+    color: var(--cyan-glow);
+}
+
+.price del {
+    font-size: 0.9rem;
+    color: var(--text-slate);
+    margin-left: 6px;
+}
+
+.qty-control {
+    margin-bottom: 12px;
+}
+
+.qty-control label {
+    font-size: 0.8rem;
+    color: var(--text-slate);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.qty-input {
+    width: 70px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
+    background: var(--bg-input);
+    color: #fff;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Modal UI based on the Reference Images */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92%; max-width: 400px;
+    background: #09101d;
+    border: 1px solid #142a4a;
+    border-radius: 14px;
+    padding: 22px;
+    z-index: 1001;
+}
+
+.modal-title {
+    color: var(--cyan-glow);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    padding-right: 20px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0; top: -2px;
+    color: var(--text-slate);
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.form-field {
+    margin-bottom: 14px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-slate);
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 11px 12px;
+    background: var(--bg-input);
+    border: 1px solid #1e293b;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.form-input:focus {
+    border-color: var(--cyan-glow);
+    outline: none;
+}
+
+.qr-section {
+    text-align: center;
+    background: var(--bg-input);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border: 1px dashed #1e293b;
+}
+
+.qr-image {
+    width: 175px;
+    height: 175px;
+    border-radius: 6px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn-back { background: #1e293b; color: #fff; flex: 1; }
+.btn-go { background: var(--cyan-glow); color: #000; flex: 2; font-weight: bold; }
