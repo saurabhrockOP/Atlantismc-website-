@@ -40,7 +40,7 @@
                 <p style="color: #f59e0b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 5px; text-transform: uppercase;">⭐ Best Value</p>
                 <h3>Titan Tier</h3>
                 <p class="store-price">₹80 <del>₹100</del></p>
-                <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="openCheckout('Titan Rank', 80)">Acquire Rank</button>
+                <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none;" onclick="openCheckout('Titan Rank', 80)">Acquire Rank</button>
             </div>
         </div>
 
@@ -73,85 +73,87 @@
         </div>
     </main>
 
-    <!-- SECURE CHECKOUT MODAL -->
-    <div id="secureModal" class="modal-wrapper">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Secure Checkout</h2>
-                <span class="close-btn" onclick="closeCheckout()">&times;</span>
+    <!-- FOOLPROOF HARDCODED CHECKOUT MODAL -->
+    <div id="secureModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+        
+        <div style="background: #09101d; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 16px; width: 100%; max-width: 450px; padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.8); position: relative;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 20px;">
+                <h2 style="color: #00d2ff; font-size: 1.4rem; text-transform: uppercase; margin: 0;">Secure Checkout</h2>
+                <span onclick="closeCheckout()" style="font-size: 2rem; color: #94a3b8; cursor: pointer; line-height: 1;">&times;</span>
             </div>
             
             <form id="checkoutForm">
-                <div class="input-group">
-                    <label>Selected Package</label>
-                    <input type="text" id="m-item" class="pro-input" style="color: #94a3b8; cursor: not-allowed;" readonly>
+                <div style="margin-bottom: 18px; text-align: left;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Selected Package</label>
+                    <input type="text" id="m-item" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #94a3b8; font-size: 16px; cursor: not-allowed; box-sizing: border-box;" readonly>
                 </div>
-                <div class="input-group">
-                    <label>Total Payment Due</label>
-                    <input type="text" id="m-price" class="pro-input" style="color: #10b981; font-weight: 900; font-size: 1.2rem; cursor: not-allowed;" readonly>
+                
+                <div style="margin-bottom: 18px; text-align: left;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Total Payment Due</label>
+                    <input type="text" id="m-price" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #10b981; font-weight: 900; font-size: 1.2rem; cursor: not-allowed; box-sizing: border-box;" readonly>
                 </div>
                 
                 <div id="step-1">
-                    <div class="input-group">
-                        <label>Minecraft Username *</label>
-                        <input type="text" id="m-ign" class="pro-input" placeholder="Exact In-Game Name" required>
+                    <div style="margin-bottom: 18px; text-align: left;">
+                        <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Minecraft Username *</label>
+                        <input type="text" id="m-ign" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="Exact In-Game Name" required>
                     </div>
-                    <div class="input-group">
-                        <label>Discord ID *</label>
-                        <input type="text" id="m-discord" class="pro-input" placeholder="e.g., player#1234" required>
+                    
+                    <div style="margin-bottom: 18px; text-align: left;">
+                        <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Discord ID *</label>
+                        <input type="text" id="m-discord" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="e.g., player#1234" required>
                     </div>
-                    <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="proceedToQR()">Proceed to Fampay</button>
+                    
+                    <button type="button" class="btn btn-primary" style="margin-top: 25px; width: 100%;" onclick="proceedToQR()">Proceed to Fampay</button>
                 </div>
 
                 <div id="step-2" style="display: none;">
-                    <div class="utr-highlight">
+                    <div style="background: rgba(245, 158, 11, 0.1); border: 2px dashed #f59e0b; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
                         <p style="color: #f59e0b; font-weight: 900; margin-bottom: 10px;">1. Scan to Transfer Funds</p>
-                        <img src="1000300514.jpg" class="qr-render" alt="Fampay QR">
+                        <img src="1000300514.jpg" style="width: 180px; height: 180px; border-radius: 10px; border: 3px solid #1e293b; margin: 15px auto; display: block;" alt="Fampay QR">
                         
                         <p style="color: #00d2ff; font-weight: 900; margin: 20px 0 10px 0;">2. Enter 12-Digit UTR Number</p>
-                        <input type="text" id="m-utr" class="pro-input" placeholder="e.g. 123456789012" maxlength="12" pattern="\d{12}" style="border-color: #f59e0b; text-align: center; font-weight: bold; letter-spacing: 2px;">
+                        <input type="text" id="m-utr" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #f59e0b; border-radius: 10px; color: #fff; font-size: 16px; text-align: center; font-weight: bold; letter-spacing: 2px; box-sizing: border-box;" placeholder="e.g. 123456789012" maxlength="12" pattern="\d{12}">
                     </div>
-                    <button type="submit" id="finalBtn" class="btn btn-success" style="margin-top: 15px;">Verify UTR & Claim Items</button>
+                    <button type="submit" id="finalBtn" class="btn btn-success" style="margin-top: 15px; width: 100%; border: none;">Verify UTR & Claim Items</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // Store Variables
+        // Native Logic - No dependencies on external CSS animations
         window.cartItemName = "";
         window.cartItemPrice = 0;
 
-        // 1. Open the Modal safely
         function openCheckout(name, price) {
             window.cartItemName = name;
             window.cartItemPrice = price;
+            
             document.getElementById('m-item').value = name;
             document.getElementById('m-price').value = "₹" + price;
             
-            document.getElementById('secureModal').classList.add('is-open');
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
+            // Force the modal to appear natively
+            document.getElementById('secureModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
         }
 
-        // 2. Calculate Key Quantities safely
         function openKeyCheckout(name, price, inputId) {
             let qty = parseInt(document.getElementById(inputId).value) || 1;
             openCheckout(qty + "x " + name, price * qty);
         }
 
-        // 3. Close Modal and Reset
         function closeCheckout() {
-            document.getElementById('secureModal').classList.remove('is-open');
+            document.getElementById('secureModal').style.display = 'none';
             document.body.style.overflow = 'auto';
-            setTimeout(() => {
-                document.getElementById('step-1').style.display = 'block';
-                document.getElementById('step-2').style.display = 'none';
-                document.getElementById('m-utr').removeAttribute('required');
-                document.getElementById('checkoutForm').reset();
-            }, 300);
+            
+            document.getElementById('step-1').style.display = 'block';
+            document.getElementById('step-2').style.display = 'none';
+            document.getElementById('m-utr').removeAttribute('required');
+            document.getElementById('checkoutForm').reset();
         }
 
-        // 4. Switch to QR Code
         function proceedToQR() {
             if(!document.getElementById('m-ign').value || !document.getElementById('m-discord').value) {
                 alert("⚠️ Please enter your Username and Discord ID first."); return;
@@ -161,7 +163,6 @@
             document.getElementById('m-utr').setAttribute('required', 'true');
         }
 
-        // 5. Submit to Backend
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const utr = document.getElementById('m-utr').value;
