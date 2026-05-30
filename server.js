@@ -13,8 +13,11 @@ const PORT = process.env.PORT || 3000;
 // The Critical Discord Webhook
 const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1509503321730322533/_5O-ubMnc25DAH2lXU4TMhCMLTOkJAvudcqA-bN_PlPGHXCnmwC4gW-X1NLvovq9fZ3g';
 
-// Enterprise Security Protocols
-app.use(helmet()); 
+// THE FIX: Telling Helmet to allow our store buttons to actually run!
+app.use(helmet({
+    contentSecurityPolicy: false
+})); 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -57,10 +60,15 @@ app.post('/api/checkout', checkoutLimiter, async (req, res) => {
 
         const logPath = path.join(__dirname, 'logs.json');
         let currentLogs = [];
+        
         if (fs.existsSync(logPath)) {
-            try { currentLogs = JSON.parse(fs.readFileSync(logPath, 'utf8')); } 
-            catch (err) { currentLogs = []; }
+            try { 
+                currentLogs = JSON.parse(fs.readFileSync(logPath, 'utf8')); 
+            } catch (err) { 
+                currentLogs = []; 
+            }
         }
+        
         currentLogs.push(orderLog);
         fs.writeFileSync(logPath, JSON.stringify(currentLogs, null, 2), 'utf8');
 
@@ -86,7 +94,9 @@ app.post('/api/checkout', checkoutLimiter, async (req, res) => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(embedPayload)
                 });
-            } catch (e) { console.error("Webhook dispatch error"); }
+            } catch (e) { 
+                console.error("Webhook dispatch error"); 
+            }
         }
 
         res.status(200).json({ success: true, message: "Transaction secured in database." });
@@ -105,7 +115,9 @@ app.get('/admin', (req, res) => {
         try { 
             currentLogs = JSON.parse(fs.readFileSync(logPath, 'utf8')); 
             currentLogs.forEach(log => totalRev += (Number(log.price) || 0));
-        } catch (err) { currentLogs = []; }
+        } catch (err) { 
+            currentLogs = []; 
+        }
     }
 
     let rowsHtml = '';
@@ -170,4 +182,3 @@ app.get('/admin', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`[INFRASTRUCTURE ONLINE]: AtlantisMC running on port ${PORT}`));
-
