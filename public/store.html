@@ -5,14 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AtlantisMC Store | Premium Perks</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ultra Pro Max Form & Modal Animations */
+        body { overflow-x: hidden; }
+        
+        .modal-overlay {
+            visibility: hidden; opacity: 0;
+            transition: visibility 0s 0.3s, opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            visibility: visible; opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .modal-container {
+            transform: translateY(-20px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Sleek Input Focus Effects */
+        .form-input {
+            transition: all 0.25s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .form-input:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.3), inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Hardware-Accelerated Toast Notifications */
+        #toastContainer {
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            display: flex; flex-direction: column; gap: 12px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 16px 24px; border-radius: 10px; color: #fff; font-weight: 800;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .toast.show { transform: translateX(0); }
+        .toast.success { background: linear-gradient(135deg, #10b981, #059669); border-left: 4px solid #047857; }
+        .toast.error { background: linear-gradient(135deg, #ef4444, #dc2626); border-left: 4px solid #991b1b; }
+
+        /* UTR Verification Highlight */
+        .utr-box { background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin-top: 15px; }
+    </style>
 </head>
 <body>
+    <div id="toastContainer"></div>
     <div id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: linear-gradient(180deg, #040712 0%, #060a13 100%);"></div>
 
     <header>
-        <a href="index.html" style="color: #00d2ff; text-decoration: none; font-size: 0.9rem; font-weight: bold;">← Return to Main Hub</a>
+        <a href="index.html" style="color: #00d2ff; text-decoration: none; font-size: 0.9rem; font-weight: bold; transition: color 0.2s;">← Return to Main Hub</a>
         <h1 class="glow-text" style="margin-top: 15px;">Official Lifesteal Webstore</h1>
-        <p style="font-size: 1rem; margin-top: 8px; color: #cbd5e1; background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px; border: 1px dashed #f59e0b;">
+        <p style="font-size: 1rem; margin-top: 8px; color: #cbd5e1; background: rgba(245, 158, 11, 0.15); padding: 12px; border-radius: 8px; border: 1px dashed #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);">
             🔥 Flash Sale: All Rank Tiers are currently carrying a massive <span class="discount">20% Discount</span> markdown!
         </p>
     </header>
@@ -23,23 +74,23 @@
             <div class="card hover-glow">
                 <h3>Olympian Tier</h3>
                 <p class="price">₹250 <del>₹312</del></p>
-                <button class="btn store-btn" onclick="openGateway('Olympian Rank', 250)">Acquire Rank</button>
+                <button type="button" class="btn store-btn" onclick="openGateway('Olympian Rank', 250)">Acquire Rank</button>
             </div>
             <div class="card hover-glow">
                 <h3>Demigod Tier</h3>
                 <p class="price">₹180 <del>₹225</del></p>
-                <button class="btn store-btn" onclick="openGateway('Demigod Rank', 180)">Acquire Rank</button>
+                <button type="button" class="btn store-btn" onclick="openGateway('Demigod Rank', 180)">Acquire Rank</button>
             </div>
             <div class="card hover-glow">
                 <h3>Spartan Tier</h3>
                 <p class="price">₹120 <del>₹150</del></p>
-                <button class="btn store-btn" onclick="openGateway('Spartan Rank', 120)">Acquire Rank</button>
+                <button type="button" class="btn store-btn" onclick="openGateway('Spartan Rank', 120)">Acquire Rank</button>
             </div>
-            <div class="card hover-glow" style="border-color: #f59e0b; transform: scale(1.02);">
+            <div class="card hover-glow" style="border-color: #f59e0b; transform: scale(1.02); box-shadow: 0 10px 30px rgba(245,158,11,0.1);">
                 <p style="color: #f59e0b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 5px; text-transform: uppercase;">⭐ Best Value</p>
                 <h3>Titan Tier</h3>
                 <p class="price">₹80 <del>₹100</del></p>
-                <button class="btn" style="background: #f59e0b; color: #000;" onclick="openGateway('Titan Rank', 80)">Acquire Rank</button>
+                <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000;" onclick="openGateway('Titan Rank', 80)">Acquire Rank</button>
             </div>
         </div>
 
@@ -49,30 +100,29 @@
                 <h3>Prime Crate Key</h3>
                 <p class="price">₹50 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-control"><label>Quantity:</label><input type="number" id="q-prime" class="qty-input" value="1" min="1"></div>
-                <button class="btn" style="background: #1e293b;" onclick="openKeyGateway('Prime Crate Key', 50, 'q-prime')">Purchase Keys</button>
+                <button type="button" class="btn" style="background: #1e293b;" onclick="openKeyGateway('Prime Crate Key', 50, 'q-prime')">Purchase Keys</button>
             </div>
             <div class="card hover-glow">
                 <h3>Crimson Crate Key</h3>
                 <p class="price">₹40 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-control"><label>Quantity:</label><input type="number" id="q-crimson" class="qty-input" value="1" min="1"></div>
-                <button class="btn" style="background: #1e293b;" onclick="openKeyGateway('Crimson Crate Key', 40, 'q-crimson')">Purchase Keys</button>
+                <button type="button" class="btn" style="background: #1e293b;" onclick="openKeyGateway('Crimson Crate Key', 40, 'q-crimson')">Purchase Keys</button>
             </div>
             <div class="card hover-glow">
                 <h3>Amethyst Crate Key</h3>
                 <p class="price">₹25 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-control"><label>Quantity:</label><input type="number" id="q-amethyst" class="qty-input" value="1" min="1"></div>
-                <button class="btn" style="background: #1e293b;" onclick="openKeyGateway('Amethyst Crate Key', 25, 'q-amethyst')">Purchase Keys</button>
+                <button type="button" class="btn" style="background: #1e293b;" onclick="openKeyGateway('Amethyst Crate Key', 25, 'q-amethyst')">Purchase Keys</button>
             </div>
             <div class="card hover-glow">
                 <h3>Gold Crate Key</h3>
                 <p class="price">₹15 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-control"><label>Quantity:</label><input type="number" id="q-gold" class="qty-input" value="1" min="1"></div>
-                <button class="btn" style="background: #1e293b;" onclick="openKeyGateway('Gold Crate Key', 15, 'q-gold')">Purchase Keys</button>
+                <button type="button" class="btn" style="background: #1e293b;" onclick="openKeyGateway('Gold Crate Key', 15, 'q-gold')">Purchase Keys</button>
             </div>
         </div>
     </main>
 
-    <!-- Secure Checkout Overlay Modal -->
     <div id="checkoutPortal" class="modal-overlay">
         <div class="modal-container">
             <span class="modal-close" onclick="closePortal()">&times;</span>
@@ -81,82 +131,170 @@
             <form id="purchaseForm">
                 <div class="form-field">
                     <label>Assigned Package</label>
-                    <input type="text" id="targetItem" class="form-input" style="color: #94a3b8; background: #0f172a;" readonly>
+                    <input type="text" id="targetItem" class="form-input" style="color: #94a3b8; background: #0f172a; cursor: not-allowed;" readonly>
                 </div>
                 <div class="form-field">
                     <label>Total Payment Due</label>
-                    <input type="text" id="targetPrice" class="form-input" style="color: #10b981; font-weight: 900; font-size: 1.1rem; background: #0f172a;" readonly>
+                    <input type="text" id="targetPrice" class="form-input" style="color: #10b981; font-weight: 900; font-size: 1.2rem; background: #0f172a; cursor: not-allowed;" readonly>
                 </div>
                 <div class="form-field">
                     <label>Minecraft Username *</label>
                     <input type="text" id="form-ign" class="form-input" placeholder="Exact In-Game Name" required>
                 </div>
                 <div class="form-field">
-                    <label>Email Address *</label>
-                    <input type="email" id="form-email" class="form-input" placeholder="Receipts & Support" required>
-                </div>
-                <div class="form-field">
                     <label>Discord ID *</label>
                     <input type="text" id="form-discord" class="form-input" placeholder="e.g., player#1234" required>
                 </div>
 
-                <div id="qrVerificationModule" class="qr-section" style="display: none;">
-                    <p style="font-size: 0.9rem; color: #f59e0b; margin-bottom: 12px; font-weight: bold;">Scan with Fampay to transfer funds:</p>
-                    <img src="1000300514.jpg" alt="Fampay QR Code" class="qr-image">
-                    <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 12px;">Ensure exact amount is paid. Staff will verify logs.</p>
+                <div id="qrVerificationModule" style="display: none;">
+                    <div class="qr-section">
+                        <p style="font-size: 0.95rem; color: #f59e0b; margin-bottom: 12px; font-weight: 900;">1. Scan with Fampay</p>
+                        <img src="1000300514.jpg" alt="Fampay QR Code" class="qr-image">
+                    </div>
+                    
+                    <div class="utr-box">
+                        <p style="font-size: 0.95rem; color: #00d2ff; margin-bottom: 10px; font-weight: 900;">2. Verify Transaction</p>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px;">After paying, enter the 12-digit UPI Reference Number (UTR) from your Fampay receipt below.</p>
+                        <input type="text" id="form-utr" class="form-input" placeholder="Enter 12-Digit UTR Number" maxlength="12" pattern="\d{12}" style="border-color: #f59e0b;">
+                    </div>
                 </div>
 
                 <div class="modal-actions">
                     <button type="button" class="btn btn-back" onclick="closePortal()">Cancel</button>
                     <button type="button" id="paymentBtn" class="btn store-btn" onclick="showQR()">Proceed to Payment</button>
-                    <button type="submit" id="submitBtn" class="btn" style="display: none; background: #10b981;">I Have Paid Funds</button>
+                    <button type="submit" id="submitBtn" class="btn" style="display: none; background: linear-gradient(135deg, #10b981, #059669);">Verify & Claim Items</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        let chosenItem = ""; let finalCost = 0;
-        function openGateway(name, cost) { chosenItem = name; finalCost = cost; renderUI(); }
-        function openKeyGateway(type, unitPrice, id) { 
-            const qty = parseInt(document.getElementById(id).value) || 1;
-            chosenItem = qty + "x " + type; finalCost = unitPrice * qty; renderUI(); 
+        // --- Ultra Pro Max Toast Engine ---
+        function showToast(message, type = "success") {
+            const container = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+            toast.innerHTML = type === 'success' ? `✅ ${message}` : `⚠️ ${message}`;
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add("show"), 10);
+            
+            // Cleanup
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
         }
+
+        // --- Store Logic Engine ---
+        let chosenItem = ""; 
+        let finalCost = 0;
+
+        // Button Triggers
+        function openGateway(name, cost) { 
+            chosenItem = name; 
+            finalCost = cost; 
+            renderUI(); 
+        }
+        
+        function openKeyGateway(type, unitPrice, id) { 
+            const qtyInput = document.getElementById(id);
+            const qty = parseInt(qtyInput.value) || 1;
+            chosenItem = qty + "x " + type; 
+            finalCost = unitPrice * qty; 
+            renderUI(); 
+        }
+
+        // Modal Controls
         function renderUI() {
             document.getElementById('targetItem').value = chosenItem;
             document.getElementById('targetPrice').value = "₹" + finalCost;
-            document.getElementById('checkoutPortal').style.display = 'block';
+            
+            const overlay = document.getElementById('checkoutPortal');
+            overlay.style.display = 'block';
+            
+            // Small delay to allow CSS transitions to catch the display change
+            setTimeout(() => { overlay.classList.add('active'); }, 10);
             document.body.style.overflow = 'hidden'; 
         }
+
         function closePortal() {
-            document.getElementById('checkoutPortal').style.display = 'none';
-            document.getElementById('qrVerificationModule').style.display = 'none';
-            document.getElementById('paymentBtn').style.display = 'block';
-            document.getElementById('submitBtn').style.display = 'none';
-            document.getElementById('purchaseForm').reset();
-            document.body.style.overflow = 'auto';
+            const overlay = document.getElementById('checkoutPortal');
+            overlay.classList.remove('active');
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.getElementById('qrVerificationModule').style.display = 'none';
+                document.getElementById('paymentBtn').style.display = 'block';
+                document.getElementById('submitBtn').style.display = 'none';
+                document.getElementById('form-utr').removeAttribute('required');
+                document.getElementById('purchaseForm').reset();
+                document.body.style.overflow = 'auto';
+            }, 300); // Matches CSS transition time
         }
+
         function showQR() {
-            if(!document.getElementById('form-ign').value || !document.getElementById('form-email').value || !document.getElementById('form-discord').value) {
-                alert("All (*) marked fields are mandatory for item routing."); return;
+            const ign = document.getElementById('form-ign').value;
+            const discord = document.getElementById('form-discord').value;
+            
+            if(!ign || !discord) {
+                showToast("Please fill in your Username and Discord ID first.", "error");
+                return;
             }
+            
+            // Reveal QR and UTR input
             document.getElementById('qrVerificationModule').style.display = 'block';
             document.getElementById('paymentBtn').style.display = 'none';
             document.getElementById('submitBtn').style.display = 'block';
+            document.getElementById('form-utr').setAttribute('required', 'true');
+            
+            showToast("Player details locked. Proceed with Fampay.", "success");
         }
+
+        // Backend Integration
         document.getElementById('purchaseForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const utrData = document.getElementById('form-utr').value;
+            if(utrData.length !== 12) {
+                showToast("Invalid UTR. It must be exactly 12 digits from Fampay.", "error");
+                return;
+            }
+
             const data = {
                 username: document.getElementById('form-ign').value,
-                email: document.getElementById('form-email').value,
+                email: "Automated@AtlantisMC.fun", // Removed from UI to make form faster, hardcoded to pass validator
                 discord: document.getElementById('form-discord').value,
-                item: chosenItem, price: finalCost
+                phone: `UTR: ${utrData}`, // Maps the UTR directly into your existing backend!
+                item: chosenItem, 
+                price: finalCost
             };
-            fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-            .then(res => res.json()).then(resData => {
-                if(resData.success) { alert("Transaction logged! Staff will crosscheck the Fampay transfer and release items instantly."); closePortal(); } 
-                else { alert(resData.message); } 
-            }).catch(() => alert("Network disruption. Try again."));
+            
+            document.getElementById('submitBtn').innerText = "Verifying...";
+            document.getElementById('submitBtn').style.opacity = "0.7";
+
+            fetch('/api/checkout', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(data) 
+            })
+            .then(res => res.json())
+            .then(resData => {
+                if(resData.success) { 
+                    showToast("Payment Logged! Staff are verifying your UTR.", "success"); 
+                    setTimeout(closePortal, 2000); 
+                } else { 
+                    showToast(resData.message, "error"); 
+                    document.getElementById('submitBtn').innerText = "Verify & Claim Items";
+                    document.getElementById('submitBtn').style.opacity = "1";
+                } 
+            })
+            .catch(() => {
+                showToast("Network disruption. Check your connection.", "error");
+                document.getElementById('submitBtn').innerText = "Verify & Claim Items";
+                document.getElementById('submitBtn').style.opacity = "1";
+            });
         });
     </script>
 </body>
