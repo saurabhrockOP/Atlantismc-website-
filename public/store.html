@@ -13,44 +13,70 @@
     <header class="main-wrapper" style="padding-bottom: 0;">
         <a href="index.html" style="color: #00d2ff; text-decoration: none; font-size: 0.95rem; font-weight: bold; margin-bottom: 15px; display: inline-block;">← Return to Main Hub</a>
         <h1 class="neon-text">Secure Webstore</h1>
+        <!-- RESTORED 20% DISCOUNT BANNER -->
+        <p style="font-size: 1rem; margin-top: 15px; color: #cbd5e1; background: rgba(245, 158, 11, 0.15); padding: 12px; border-radius: 8px; border: 1px dashed #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1); width: 100%; max-width: 600px;">
+            🔥 Flash Sale: All Rank Tiers are currently carrying a massive <span style="color: #f59e0b; font-weight: 900;">20% Discount</span> markdown!
+        </p>
     </header>
 
     <main class="main-wrapper">
-        <!-- Ranks -->
+        <!-- ALL 4 RESTORED RANKS -->
         <h2 style="font-size: 1.5rem; color: #f59e0b; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin-bottom: 20px;">👑 Premium Ranks</h2>
         <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
             <div class="glass-panel store-item">
-                <h3>Olympian Rank</h3>
-                <p class="store-price">₹250</p>
+                <h3>Olympian Tier</h3>
+                <p class="store-price">₹250 <del>₹312</del></p>
                 <button type="button" class="btn btn-primary" onclick="window.triggerPurchase('Olympian Rank', 250)">Acquire Rank</button>
+            </div>
+            <div class="glass-panel store-item">
+                <h3>Demigod Tier</h3>
+                <p class="store-price">₹180 <del>₹225</del></p>
+                <button type="button" class="btn btn-primary" onclick="window.triggerPurchase('Demigod Rank', 180)">Acquire Rank</button>
+            </div>
+            <div class="glass-panel store-item">
+                <h3>Spartan Tier</h3>
+                <p class="store-price">₹120 <del>₹150</del></p>
+                <button type="button" class="btn btn-primary" onclick="window.triggerPurchase('Spartan Rank', 120)">Acquire Rank</button>
             </div>
             <div class="glass-panel store-item" style="border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); transform: scale(1.02);">
                 <p style="color: #f59e0b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 5px; text-transform: uppercase;">⭐ Best Value</p>
-                <h3>Titan Rank</h3>
-                <p class="store-price">₹80</p>
+                <h3>Titan Tier</h3>
+                <p class="store-price">₹80 <del>₹100</del></p>
                 <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="window.triggerPurchase('Titan Rank', 80)">Acquire Rank</button>
             </div>
         </div>
 
-        <!-- Keys -->
-        <h2 style="font-size: 1.5rem; color: #00d2ff; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin: 40px 0 20px 0;">🗝️ Crate Keys</h2>
+        <!-- ALL 4 RESTORED KEYS -->
+        <h2 style="font-size: 1.5rem; color: #00d2ff; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin: 40px 0 20px 0;">🗝️ Crate Keys Matrix</h2>
         <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
             <div class="glass-panel store-item">
                 <h3>Prime Crate Key</h3>
-                <p class="store-price">₹50</p>
+                <p class="store-price">₹50 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-prime" value="1" min="1"></div>
                 <button type="button" class="btn btn-dark" onclick="window.triggerKeyPurchase('Prime Crate Key', 50, 'q-prime')">Purchase Keys</button>
             </div>
             <div class="glass-panel store-item">
+                <h3>Crimson Crate Key</h3>
+                <p class="store-price">₹40 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
+                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-crimson" value="1" min="1"></div>
+                <button type="button" class="btn btn-dark" onclick="window.triggerKeyPurchase('Crimson Crate Key', 40, 'q-crimson')">Purchase Keys</button>
+            </div>
+            <div class="glass-panel store-item">
                 <h3>Amethyst Crate Key</h3>
-                <p class="store-price">₹25</p>
+                <p class="store-price">₹25 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
                 <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-amethyst" value="1" min="1"></div>
                 <button type="button" class="btn btn-dark" onclick="window.triggerKeyPurchase('Amethyst Crate Key', 25, 'q-amethyst')">Purchase Keys</button>
+            </div>
+            <div class="glass-panel store-item">
+                <h3>Gold Crate Key</h3>
+                <p class="store-price">₹15 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
+                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-gold" value="1" min="1"></div>
+                <button type="button" class="btn btn-dark" onclick="window.triggerKeyPurchase('Gold Crate Key', 15, 'q-gold')">Purchase Keys</button>
             </div>
         </div>
     </main>
 
-    <!-- UNBREAKABLE SECURE MODAL -->
+    <!-- SECURE CHECKOUT MODAL -->
     <div id="secureModal" class="modal-wrapper">
         <div class="modal-content">
             <div class="modal-header">
@@ -86,7 +112,7 @@
                         <img src="1000300514.jpg" class="qr-render" alt="Fampay QR">
                         
                         <p style="color: #00d2ff; font-weight: 900; margin: 20px 0 10px 0;">2. Enter 12-Digit UTR Number</p>
-                        <input type="text" id="m-utr" class="pro-input" placeholder="e.g. 123456789012" maxlength="12" pattern="\\d{12}" style="border-color: #f59e0b; text-align: center; font-weight: bold; letter-spacing: 2px;">
+                        <input type="text" id="m-utr" class="pro-input" placeholder="e.g. 123456789012" maxlength="12" pattern="\d{12}" style="border-color: #f59e0b; text-align: center; font-weight: bold; letter-spacing: 2px;">
                     </div>
                     <button type="submit" id="finalBtn" class="btn btn-success" style="margin-top: 15px;">Verify UTR & Claim Items</button>
                 </div>
@@ -95,7 +121,6 @@
     </div>
 
     <script>
-        // Global Toast System
         window.fireToast = function(msg, type) {
             const rack = document.getElementById("toast-rack");
             const t = document.createElement("div");
@@ -106,12 +131,10 @@
             setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 400); }, 3500);
         };
 
-        // State Management
         let cartItem = ""; 
         let cartPrice = 0;
         const modal = document.getElementById('secureModal');
 
-        // Logic mapped securely to window object to prevent mobile browser scoping issues
         window.triggerPurchase = function(name, cost) {
             cartItem = name; cartPrice = cost;
             document.getElementById('m-item').value = cartItem;
@@ -143,7 +166,6 @@
             document.getElementById('m-utr').setAttribute('required', 'true');
         };
 
-        // Backend Pipeline Integration
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const utr = document.getElementById('m-utr').value;
@@ -172,3 +194,4 @@
     </script>
 </body>
 </html>
+
