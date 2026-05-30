@@ -72,6 +72,7 @@
         </div>
     </main>
 
+    <!-- Secure Checkout Overlay Modal -->
     <div id="checkoutPortal" class="modal-overlay">
         <div class="modal-container">
             <span class="modal-close" onclick="closePortal()">&times;</span>
@@ -125,7 +126,7 @@
             document.getElementById('targetItem').value = chosenItem;
             document.getElementById('targetPrice').value = "₹" + finalCost;
             document.getElementById('checkoutPortal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevents background scrolling behind modal
+            document.body.style.overflow = 'hidden'; 
         }
         function closePortal() {
             document.getElementById('checkoutPortal').style.display = 'none';
@@ -154,7 +155,7 @@
             fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(res => res.json()).then(resData => {
                 if(resData.success) { alert("Transaction logged! Staff will crosscheck the Fampay transfer and release items instantly."); closePortal(); } 
-                else { alert(resData.message); } // Will show the Rate Limiting security message if they spam it
+                else { alert(resData.message); } 
             }).catch(() => alert("Network disruption. Try again."));
         });
     </script>
