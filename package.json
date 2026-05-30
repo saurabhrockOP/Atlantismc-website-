@@ -1,14 +1,17 @@
 {
-  "name": "atlantismc-network-store",
-  "version": "1.0.0",
-  "description": "Optimized Premium Website and Shop for AtlantisMC",
+  "name": "atlantismc-network",
+  "version": "3.0.0",
+  "description": "Enterprise Web Architecture for AtlantisMC",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.19.2",
-    "express-basic-auth": "^1.2.1"
+    "express-basic-auth": "^1.2.1",
+    "express-rate-limit": "^7.2.0",
+    "validator": "^13.11.0",
+    "helmet": "^7.1.0"
   },
   "engines": {
     "node": ">=18.0.0"
