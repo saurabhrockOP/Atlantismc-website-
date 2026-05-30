@@ -6,27 +6,39 @@
     <title>AtlantisMC Network | Enterprise SMP</title>
     
     <meta property="og:title" content="AtlantisMC Network">
-    <meta property="og:description" content="Ryzen 9 9950 | 64GB RAM | 5ms Mumbai Ping. Join 50+ players on the ultimate Lifesteal SMP!">
+    <meta property="og:description" content="Ryzen 9 9950 | 64GB RAM | 5ms Mumbai Ping. Join the ultimate Lifesteal SMP!">
     <meta property="og:image" content="https://atlantismc.fun/1000292141.png">
     <meta name="theme-color" content="#00d2ff">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="toast-rack"></div>
+    
     <canvas id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
 
     <div class="main-wrapper">
+        
         <header>
             <img src="1000292141.png" alt="AtlantisMC Logo" class="hero-logo">
+            
             <h1 class="neon-text">AtlantisMC Network</h1>
-            <p style="color: #94a3b8; margin-top: 5px; font-size: 1.15rem; font-weight: 500;">India's Premier Lifesteal Experience</p>
+            
+            <p style="color: #94a3b8; margin-top: 5px; font-size: 1.15rem; font-weight: 500;">
+                India's Premier Lifesteal Experience
+            </p>
             
             <div class="glass-panel ip-copier" onclick="copyIP()">
                 <div class="pulse-dot"></div>
                 <div>
-                    <p style="font-size: 1.2rem; font-weight: 900; color: #fff;">play.atlantismc.fun <span style="font-size: 0.8rem; color:#94a3b8; font-weight:normal;">(Click to Copy)</span></p>
-                    <p style="font-size: 0.95rem; margin-top: 3px; color:#cbd5e1;">Live Players: <span id="playerSlots" style="color: #00d2ff; font-weight: bold;">Loading...</span></p>
+                    <p style="font-size: 1.2rem; font-weight: 900; color: #fff;">
+                        play.atlantismc.fun 
+                        <span style="font-size: 0.8rem; color:#94a3b8; font-weight:normal;">(Click to Copy)</span>
+                    </p>
+                    <p style="font-size: 0.95rem; margin-top: 3px; color:#cbd5e1;">
+                        Live Players: <span id="playerSlots" style="color: #00d2ff; font-weight: bold;">Pinging Server...</span>
+                    </p>
                 </div>
             </div>
         </header>
@@ -38,12 +50,13 @@
             <a href="https://topg.org/minecraft-servers/server-679412" target="_blank" class="btn btn-success">👍 Vote For Rewards</a>
         </main>
 
-        <!-- NEW: High-Conversion Copywriting Section -->
         <section class="feature-section glass-panel" style="margin-top: 35px;">
             <h2>🌊 Welcome to the Depths</h2>
+            
             <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin-bottom: 15px;">
                 AtlantisMC isn't just another Minecraft server; it is a high-stakes, adrenaline-fueled battleground. In our core <strong>Lifesteal SMP</strong>, every kill rewards you with maximum health, and every death brings you closer to elimination. 
             </p>
+            
             <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">
                 Will you forge massive alliances to dominate the economy, build impenetrable obsidian fortresses, or become a lone-wolf assassin hunting down the wealthiest players? The choice is yours, but remember: <strong>Trust no one, and guard your hearts.</strong>
             </p>
@@ -51,11 +64,13 @@
 
         <section class="feature-section glass-panel">
             <h2>⚡ Enterprise Hardware Specs</h2>
+            
             <div class="grid-2">
                 <div class="card-node">
                     <h4>📍 Mumbai Hosted (5ms)</h4>
                     <p>Strategically located in Mumbai guaranteeing sub-10ms ping for flawless PvP hit registration.</p>
                 </div>
+                
                 <div class="card-node">
                     <h4>💻 Ryzen 9 9950 CPU</h4>
                     <p>Maintains a flawless 20.0 TPS (Ticks Per Second) even during massive faction wars.</p>
@@ -65,11 +80,13 @@
 
         <section class="feature-section glass-panel">
             <h2>⚔️ Network Gamemodes</h2>
+            
             <div class="grid-2">
                 <div class="card-node" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
                     <h4 style="color: #ef4444;">❤️ Lifesteal SMP (LIVE)</h4>
                     <p>Steal hearts, forge alliances, and survive the deadliest SMP in the region.</p>
                 </div>
+                
                 <div class="card-node">
                     <h4 style="color: #00d2ff;">📦 BoxPvP (Upcoming)</h4>
                     <p>Mine resources in tight PvP zones to upgrade your gear and dominate.</p>
@@ -81,56 +98,96 @@
             <p><strong>Strict Policy:</strong> All digital assets are bound by a 1-hour refund window. Abuse results in IP-bans.</p>
             <p style="margin-top: 10px; font-style: italic;">Not affiliated with Mojang Studios or Microsoft Corporation.</p>
         </footer>
+        
     </div>
 
     <script>
-        // Copy IP System
+        // 1. Copy IP System
         function copyIP() {
             navigator.clipboard.writeText("play.atlantismc.fun").then(() => {
                 const rack = document.getElementById("toast-rack");
                 const toast = document.createElement("div");
                 toast.className = `toast-msg toast-success`;
                 toast.innerHTML = `✅ Server IP Copied to Clipboard!`;
+                
                 rack.appendChild(toast);
+                
                 setTimeout(() => toast.classList.add("show"), 10);
-                setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 400); }, 3000);
+                setTimeout(() => { 
+                    toast.classList.remove("show"); 
+                    setTimeout(() => toast.remove(), 400); 
+                }, 3000);
             });
         }
 
-        // Particle System
+        // 2. Deep Sea Particle System
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
+        
+        function resize() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
+        
+        window.addEventListener('resize', resize); 
+        resize();
+        
         const particles = [];
         for (let i = 0; i < 40; i++) {
-            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2.5 + 1, dy: (Math.random() * -1.5) - 0.5, op: Math.random() * 0.5 + 0.1 });
+            particles.push({ 
+                x: Math.random() * canvas.width, 
+                y: Math.random() * canvas.height, 
+                r: Math.random() * 2.5 + 1, 
+                dy: (Math.random() * -1.5) - 0.5, 
+                op: Math.random() * 0.5 + 0.1 
+            });
         }
+        
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.y += p.dy;
                 if (p.y < -10) p.y = canvas.height + 10;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(0, 210, 255, ${p.op})`; ctx.fill();
+                
+                ctx.beginPath(); 
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); 
+                ctx.fillStyle = `rgba(0, 210, 255, ${p.op})`; 
+                ctx.fill();
             });
             requestAnimationFrame(draw);
         }
         draw();
 
-        // FIXED Server Pinger API (Uses Minetools as a highly stable alternative)
-        fetch('https://api.minetools.eu/ping/play.atlantismc.fun')
-            .then(res => res.json())
-            .then(data => {
-                if(data.error) {
-                    document.getElementById('playerSlots').innerText = "Offline";
+        // 3. Ultra Reliable Player Count System
+        async function fetchPlayerCount() {
+            const slotsElement = document.getElementById('playerSlots');
+            
+            try {
+                // MCStatus.io is currently the most robust API for Java server tracking
+                const response = await fetch('https://api.mcstatus.io/v2/status/java/play.atlantismc.fun');
+                const data = await response.json();
+
+                if (data.online) {
+                    slotsElement.innerText = data.players.online + " / " + data.players.max;
+                    slotsElement.style.color = "#10b981"; // Success Green
                 } else {
-                    document.getElementById('playerSlots').innerText = data.players.online + " / " + data.players.max;
+                    slotsElement.innerText = "Server Offline";
+                    slotsElement.style.color = "#ef4444"; // Error Red
                 }
-            })
-            .catch(() => {
-                document.getElementById('playerSlots').innerText = "Status Unavailable";
-            });
+            } catch (error) {
+                console.error("Player count API failed:", error);
+                slotsElement.innerText = "API Timeout";
+                slotsElement.style.color = "#f59e0b"; // Warning Orange
+            }
+        }
+
+        // Run the ping function instantly when the site loads
+        fetchPlayerCount();
+        
+        // Refresh the ping every 60 seconds automatically so it stays live
+        setInterval(fetchPlayerCount, 60000);
+        
     </script>
 </body>
-                </html>
-            
+</html>
+
