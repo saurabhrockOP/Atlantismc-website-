@@ -21,7 +21,17 @@ app.use(helmet({
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+// NEW FEATURE: Simple Request Logger (Helps you track traffic in Render console)
+app.use((req, res, next) => {
+    console.log(`[NETWORK TRAFFIC] ${req.method} request to ${req.url}`);
+    next();
+});
+
+// THE MAGIC FIX: This automatically hides .html from your URLs!
+app.use(express.static(path.join(__dirname, 'public'), { 
+    extensions: ['html'] 
+}));
 
 // Rate Limiter: Blocks DDoS and Form Spam
 const checkoutLimiter = rateLimit({
@@ -179,6 +189,12 @@ app.get('/admin', (req, res) => {
         </body>
         </html>
     `);
+});
+
+// NEW FEATURE: 404 Fallback Route
+// If a player types a broken link (like atlantismc.fun/stor), this automatically sends them back to the main hub instead of crashing.
+app.use((req, res) => {
+    res.redirect('/');
 });
 
 app.listen(PORT, () => console.log(`[INFRASTRUCTURE ONLINE]: AtlantisMC running on port ${PORT}`));
