@@ -5,32 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>AtlantisMC Store | Secure Checkout</title>
     
+    <!-- The Small Browser Tab Icon (Favicon) -->
     <link rel="icon" href="1000292141.png" type="image/png">
     
     <link rel="stylesheet" href="style.css">
     
     <style>
         #secureModal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            z-index: 99999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
+        
         .modal-box {
-            background: #09101d; border: 2px solid #00d2ff; border-radius: 16px; width: 100%; max-width: 450px;
-            padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); position: relative;
+            background: #09101d;
+            border: 2px solid #00d2ff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            position: relative;
         }
-        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 100000; }
+        
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100000;
+        }
     </style>
 </head>
 <body>
 
     <div id="toast-rack" class="toast-container"></div>
+    
     <div id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: linear-gradient(180deg, #020617 0%, #0f172a 100%);"></div>
 
     <header class="main-wrapper" style="padding-bottom: 0; text-align: center;">
         <a href="index.html" style="color: #00d2ff; text-decoration: none; font-size: 0.95rem; font-weight: bold; margin-bottom: 20px; display: inline-block;">← Return to Main Hub</a>
         <br>
         
+        <!-- Original square/shield logo with a clean transparent glow -->
         <img src="1000292141.png" alt="AtlantisMC Logo" style="width: 120px; height: auto; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.5)); margin-bottom: 15px;">
         
         <h1 class="neon-text">Secure Webstore</h1>
@@ -41,134 +70,265 @@
     </header>
 
     <main class="main-wrapper">
+        
         <h2 style="font-size: 1.5rem; color: #f59e0b; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin-bottom: 20px;">👑 Premium Ranks</h2>
+        
         <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
+            
             <div class="glass-panel store-item">
                 <h3>Olympian Tier</h3>
                 <p class="store-price">₹250 <del>₹312</del></p>
                 <button type="button" class="btn btn-primary" onclick="openCheckout('Olympian Rank', 250)">Acquire Rank</button>
             </div>
+            
             <div class="glass-panel store-item">
                 <h3>Demigod Tier</h3>
                 <p class="store-price">₹180 <del>₹225</del></p>
                 <button type="button" class="btn btn-primary" onclick="openCheckout('Demigod Rank', 180)">Acquire Rank</button>
             </div>
+            
             <div class="glass-panel store-item">
                 <h3>Spartan Tier</h3>
                 <p class="store-price">₹120 <del>₹150</del></p>
                 <button type="button" class="btn btn-primary" onclick="openCheckout('Spartan Rank', 120)">Acquire Rank</button>
             </div>
+            
             <div class="glass-panel store-item" style="border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); transform: scale(1.02);">
                 <p style="color: #f59e0b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 5px; text-transform: uppercase;">⭐ Best Value</p>
                 <h3>Titan Tier</h3>
                 <p class="store-price">₹80 <del>₹100</del></p>
                 <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none;" onclick="openCheckout('Titan Rank', 80)">Acquire Rank</button>
             </div>
+            
         </div>
 
         <h2 style="font-size: 1.5rem; color: #00d2ff; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin: 40px 0 20px 0;">🗝️ Crate Keys Matrix</h2>
+        
         <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
+            
             <div class="glass-panel store-item">
                 <h3>Prime Crate Key</h3>
                 <p class="store-price">₹50 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-prime" value="1" min="1"></div>
+                <div class="qty-box">
+                    <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label>
+                    <input type="number" id="q-prime" value="1" min="1">
+                </div>
                 <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Prime Crate Key', 50, 'q-prime')">Purchase Keys</button>
             </div>
+            
             <div class="glass-panel store-item">
                 <h3>Crimson Crate Key</h3>
                 <p class="store-price">₹40 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-crimson" value="1" min="1"></div>
+                <div class="qty-box">
+                    <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label>
+                    <input type="number" id="q-crimson" value="1" min="1">
+                </div>
                 <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Crimson Crate Key', 40, 'q-crimson')">Purchase Keys</button>
             </div>
+            
             <div class="glass-panel store-item">
                 <h3>Amethyst Crate Key</h3>
                 <p class="store-price">₹25 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-amethyst" value="1" min="1"></div>
+                <div class="qty-box">
+                    <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label>
+                    <input type="number" id="q-amethyst" value="1" min="1">
+                </div>
                 <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Amethyst Crate Key', 25, 'q-amethyst')">Purchase Keys</button>
             </div>
+            
             <div class="glass-panel store-item">
                 <h3>Gold Crate Key</h3>
                 <p class="store-price">₹15 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-gold" value="1" min="1"></div>
+                <div class="qty-box">
+                    <label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label>
+                    <input type="number" id="q-gold" value="1" min="1">
+                </div>
                 <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Gold Crate Key', 15, 'q-gold')">Purchase Keys</button>
             </div>
+            
         </div>
     </main>
 
     <div id="secureModal">
+        
         <div class="modal-box">
+            
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 20px;">
                 <h2 style="color: #00d2ff; font-size: 1.4rem; text-transform: uppercase; margin: 0;">Secure Checkout</h2>
                 <span onclick="closeCheckout()" style="font-size: 2rem; color: #94a3b8; cursor: pointer; line-height: 1;">&times;</span>
             </div>
+            
             <form id="checkoutForm">
+                
                 <div style="margin-bottom: 18px; text-align: left;">
                     <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Selected Package</label>
                     <input type="text" id="m-item" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #94a3b8; font-size: 16px; cursor: not-allowed; box-sizing: border-box;" readonly>
                 </div>
+                
                 <div style="margin-bottom: 18px; text-align: left;">
                     <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Total Payment Due</label>
                     <input type="text" id="m-price" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #10b981; font-weight: 900; font-size: 1.2rem; cursor: not-allowed; box-sizing: border-box;" readonly>
                 </div>
+                
                 <div id="step-1">
+                    
                     <div style="margin-bottom: 18px; text-align: left;">
                         <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Minecraft Username *</label>
                         <input type="text" id="m-ign" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="Exact In-Game Name" required>
                     </div>
+                    
                     <div style="margin-bottom: 18px; text-align: left;">
                         <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Discord ID *</label>
                         <input type="text" id="m-discord" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="e.g., player#1234" required>
                     </div>
+                    
                     <button type="button" class="btn btn-primary" style="margin-top: 25px; width: 100%;" onclick="proceedToQR()">Proceed to Pay</button>
+                    
                 </div>
+
                 <div id="step-2" style="display: none;">
+                    
                     <div style="background: rgba(245, 158, 11, 0.1); border: 2px dashed #f59e0b; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
                         <p style="color: #f59e0b; font-weight: 900; margin-bottom: 10px;">1. Scan to Transfer Funds</p>
+                        
                         <img src="1000300514.jpg" style="width: 180px; height: 180px; border-radius: 10px; border: 3px solid #1e293b; margin: 15px auto; display: block;" alt="Fampay QR">
+                        
                         <p style="color: #00d2ff; font-weight: 900; margin: 20px 0 10px 0;">2. Enter 12-Digit UTR Number</p>
+                        
                         <input type="text" id="m-utr" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #f59e0b; border-radius: 10px; color: #fff; font-size: 16px; text-align: center; font-weight: bold; letter-spacing: 2px; box-sizing: border-box;" placeholder="e.g. 123456789012" maxlength="12" pattern="\d{12}">
                     </div>
+                    
                     <button type="submit" id="finalBtn" class="btn btn-success" style="margin-top: 15px; width: 100%; border: none;">Verify UTR & Claim Items</button>
+                    
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        window.cartItemName = ""; window.cartItemPrice = 0;
+        
+        // Variables to hold the selected item data
+        window.cartItemName = "";
+        window.cartItemPrice = 0;
+
+        // Function 1: Opening the Checkout Modal
         function openCheckout(name, price) {
-            window.cartItemName = name; window.cartItemPrice = price;
-            document.getElementById('m-item').value = name; document.getElementById('m-price').value = "₹" + price;
-            document.getElementById('secureModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; 
+            
+            // Save the item details
+            window.cartItemName = name;
+            window.cartItemPrice = price;
+            
+            // Fill in the text boxes inside the modal
+            document.getElementById('m-item').value = name;
+            document.getElementById('m-price').value = "₹" + price;
+            
+            // Force the modal to appear on screen (Hardcoded logic, impossible to break)
+            document.getElementById('secureModal').style.display = 'flex';
+            
+            // Stop the background from scrolling while the menu is open
+            document.body.style.overflow = 'hidden'; 
         }
+
+        // Function 2: Calculating Key Quantities
         function openKeyCheckout(name, price, inputId) {
+            
+            // Get the number they typed in the quantity box
             let qty = parseInt(document.getElementById(inputId).value) || 1;
+            
+            // Send the total math to the main checkout function
             openCheckout(qty + "x " + name, price * qty);
         }
+
+        // Function 3: Closing the Modal safely
         function closeCheckout() {
-            document.getElementById('secureModal').style.display = 'none'; document.body.style.overflow = 'auto';
-            document.getElementById('step-1').style.display = 'block'; document.getElementById('step-2').style.display = 'none';
-            document.getElementById('m-utr').removeAttribute('required'); document.getElementById('checkoutForm').reset();
+            
+            // Hide the modal
+            document.getElementById('secureModal').style.display = 'none';
+            
+            // Allow the background to scroll again
+            document.body.style.overflow = 'auto';
+            
+            // Reset the form back to Step 1 for the next time they open it
+            document.getElementById('step-1').style.display = 'block';
+            document.getElementById('step-2').style.display = 'none';
+            
+            // Remove the strict requirement on the UTR box so it doesn't cause hidden errors
+            document.getElementById('m-utr').removeAttribute('required');
+            
+            // Wipe the text boxes clean
+            document.getElementById('checkoutForm').reset();
         }
+
+        // Function 4: Moving from Step 1 to Step 2 (QR Code)
         function proceedToQR() {
+            
+            // Check if they left the name or discord box empty
             if(!document.getElementById('m-ign').value || !document.getElementById('m-discord').value) {
-                alert("⚠️ Please enter your Username and Discord ID first."); return;
+                alert("⚠️ Please enter your Username and Discord ID first."); 
+                return;
             }
-            document.getElementById('step-1').style.display = 'none'; document.getElementById('step-2').style.display = 'block';
+            
+            // Hide Step 1
+            document.getElementById('step-1').style.display = 'none';
+            
+            // Show Step 2
+            document.getElementById('step-2').style.display = 'block';
+            
+            // Force them to fill out the UTR box before submitting
             document.getElementById('m-utr').setAttribute('required', 'true');
         }
+
+        // Function 5: Sending the data to your Node.js Server
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-            e.preventDefault(); const utr = document.getElementById('m-utr').value;
-            if(utr.length !== 12) { alert("⚠️ UTR must be exactly 12 digits."); return; }
-            const payload = { username: document.getElementById('m-ign').value, discord: document.getElementById('m-discord').value, utr: utr, item: window.cartItemName, price: window.cartItemPrice };
-            const btn = document.getElementById('finalBtn'); btn.innerText = "Connecting to Secure Node..."; btn.style.opacity = "0.7";
-            fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-            .then(r => r.json()).then(data => {
-                if(data.success) { alert("✅ Payment Logged Successfully! Staff will verify the UTR and deliver your items."); closeCheckout(); } 
-                else { alert("⚠️ " + data.message); }
-            }).catch(() => alert("⚠️ Network Error. Please check your connection."))
-            .finally(() => { btn.innerText = "Verify UTR & Claim Items"; btn.style.opacity = "1"; });
+            
+            // Stop the page from refreshing when they click submit
+            e.preventDefault();
+            
+            const utr = document.getElementById('m-utr').value;
+            
+            // Make sure the UTR is exactly 12 numbers long
+            if(utr.length !== 12) { 
+                alert("⚠️ UTR must be exactly 12 digits."); 
+                return; 
+            }
+
+            // Package the data up perfectly
+            const payload = {
+                username: document.getElementById('m-ign').value,
+                discord: document.getElementById('m-discord').value,
+                utr: utr,
+                item: window.cartItemName, 
+                price: window.cartItemPrice
+            };
+            
+            const btn = document.getElementById('finalBtn');
+            btn.innerText = "Connecting to Secure Node...";
+            btn.style.opacity = "0.7";
+
+            // Send it to the API we built in server.js
+            fetch('/api/checkout', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(payload) 
+            })
+            .then(r => r.json())
+            .then(data => {
+                if(data.success) { 
+                    alert("✅ Payment Logged Successfully! Staff will verify the UTR and deliver your items."); 
+                    closeCheckout(); 
+                } else { 
+                    alert("⚠️ " + data.message); 
+                }
+            })
+            .catch(() => {
+                alert("⚠️ Network Error. Please check your connection.");
+            })
+            .finally(() => { 
+                btn.innerText = "Verify UTR & Claim Items"; 
+                btn.style.opacity = "1"; 
+            });
         });
+        
     </script>
 </body>
 </html>
