@@ -24,7 +24,7 @@
         
         <header>
             
-            <img src="1000292141.png" alt="AtlantisMC Logo" style="width: 150px; height: auto; border-radius: 50%; box-shadow: 0 0 25px rgba(0, 210, 255, 0.6); margin-bottom: 15px;">
+            <img src="1000292141.png" alt="AtlantisMC Logo" class="hero-logo">
             
             <h1 class="neon-text">AtlantisMC Network</h1>
             
@@ -56,11 +56,9 @@
 
         <section class="feature-section glass-panel" style="margin-top: 35px;">
             <h2>🌊 Welcome to the Depths</h2>
-            
             <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin-bottom: 15px;">
                 AtlantisMC isn't just another Minecraft server; it is a high-stakes, adrenaline-fueled battleground. In our core <strong>Lifesteal SMP</strong>, every kill rewards you with maximum health, and every death brings you closer to elimination. 
             </p>
-            
             <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">
                 Will you forge massive alliances to dominate the economy, build impenetrable obsidian fortresses, or become a lone-wolf assassin hunting down the wealthiest players? The choice is yours, but remember: <strong>Trust no one, and guard your hearts.</strong>
             </p>
@@ -68,13 +66,11 @@
 
         <section class="feature-section glass-panel">
             <h2>⚡ Enterprise Hardware Specs</h2>
-            
             <div class="grid-2">
                 <div class="card-node">
                     <h4>📍 Mumbai Hosted (5ms)</h4>
                     <p>Strategically located in Mumbai guaranteeing sub-10ms ultra-low ping for flawless PvP hit registration.</p>
                 </div>
-                
                 <div class="card-node">
                     <h4>💻 Ryzen 9 9950 CPU</h4>
                     <p>Dialed into Efficient Aggressive power mode to squeeze out maximum sustained performance, maintaining a flawless 20.0 TPS even during massive faction wars.</p>
@@ -84,13 +80,11 @@
 
         <section class="feature-section glass-panel">
             <h2>⚔️ Network Gamemodes</h2>
-            
             <div class="grid-2">
                 <div class="card-node" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
                     <h4 style="color: #ef4444;">❤️ Lifesteal SMP (LIVE)</h4>
                     <p>Steal hearts, forge alliances, and survive the deadliest SMP in the region.</p>
                 </div>
-                
                 <div class="card-node">
                     <h4 style="color: #00d2ff;">📦 BoxPvP (Upcoming)</h4>
                     <p>Mine resources in tight PvP zones to upgrade your gear and dominate the central arena.</p>
@@ -100,18 +94,15 @@
 
         <section class="feature-section glass-panel">
             <h2>❓ Frequently Asked Questions</h2>
-            
             <div style="margin-top: 15px;">
                 <div style="margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">
                     <h4 style="color: #f59e0b; margin-bottom: 8px; font-size: 1.1rem;">Is the server cracked-supported?</h4>
                     <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">Yes! AtlantisMC is fully accessible to both premium and cracked Minecraft Java accounts.</p>
                 </div>
-                
                 <div style="margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">
                     <h4 style="color: #f59e0b; margin-bottom: 8px; font-size: 1.1rem;">How long does it take to get items from the store?</h4>
                     <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">Delivery is nearly instant. Once you submit your 12-digit FamPay UTR, our staff team verifies the transaction and automatically issues the package.</p>
                 </div>
-                
                 <div>
                     <h4 style="color: #f59e0b; margin-bottom: 8px; font-size: 1.1rem;">Can I join from Minecraft Bedrock (Mobile/Xbox)?</h4>
                     <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">Currently, AtlantisMC is optimized purely for Java Edition PvP mechanics. Bedrock compatibility is planned for a future cloud update.</p>
@@ -121,13 +112,11 @@
 
         <section class="feature-section glass-panel">
             <h2>📊 Cloud Infrastructure Status</h2>
-            
             <div class="grid-2">
                 <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 20px; border-radius: 12px; text-align: center;">
                     <h4 style="color: #10b981; margin-bottom: 8px; font-size: 1.1rem;">Mumbai Primary Node</h4>
                     <p style="color: #fff; font-weight: 900; font-size: 1.2rem;">🟢 99.9% Uptime</p>
                 </div>
-                
                 <div style="background: rgba(0, 210, 255, 0.1); border: 1px solid #00d2ff; padding: 20px; border-radius: 12px; text-align: center;">
                     <h4 style="color: #00d2ff; margin-bottom: 8px; font-size: 1.1rem;">API Gateway</h4>
                     <p style="color: #fff; font-weight: 900; font-size: 1.2rem;">🟢 Routing Active</p>
@@ -143,103 +132,63 @@
     </div>
 
     <script>
-        // 1. Interactive Copy IP Feature
         function copyIP() {
             navigator.clipboard.writeText("play.atlantismc.fun").then(() => {
                 const rack = document.getElementById("toast-rack");
                 const toast = document.createElement("div");
-                
                 toast.className = `toast-msg toast-success`;
                 toast.innerHTML = `✅ Server IP Copied to Clipboard!`;
-                
                 rack.appendChild(toast);
-                
                 setTimeout(() => toast.classList.add("show"), 10);
-                setTimeout(() => { 
-                    toast.classList.remove("show"); 
-                    setTimeout(() => toast.remove(), 400); 
-                }, 3000);
+                setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 400); }, 3000);
             });
         }
 
-        // 2. Hardware-Accelerated Particle Background
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
-        
-        function resize() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        
-        window.addEventListener('resize', resize); 
-        resize();
-        
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
         const particles = [];
         for (let i = 0; i < 40; i++) {
-            particles.push({ 
-                x: Math.random() * canvas.width, 
-                y: Math.random() * canvas.height, 
-                r: Math.random() * 2.5 + 1, 
-                dy: (Math.random() * -1.5) - 0.5, 
-                op: Math.random() * 0.5 + 0.1 
-            });
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2.5 + 1, dy: (Math.random() * -1.5) - 0.5, op: Math.random() * 0.5 + 0.1 });
         }
-        
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.y += p.dy;
                 if (p.y < -10) p.y = canvas.height + 10;
-                
-                ctx.beginPath(); 
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); 
-                ctx.fillStyle = `rgba(0, 210, 255, ${p.op})`; 
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(0, 210, 255, ${p.op})`; ctx.fill();
             });
             requestAnimationFrame(draw);
         }
         draw();
 
-        // 3. The Unbreakable Fallback Player Count System
         async function fetchPlayerCount() {
             const slotsElement = document.getElementById('playerSlots');
-            
             try {
-                // Try the Primary API First
                 let primaryResponse = await fetch('https://api.mcsrvstat.us/3/play.atlantismc.fun');
                 let primaryData = await primaryResponse.json();
-
                 if (primaryData.online) {
                     slotsElement.innerText = primaryData.players.online + " / " + primaryData.players.max;
-                    slotsElement.style.color = "#10b981"; // Success Green
-                    return; // Exit the function if it worked perfectly
+                    slotsElement.style.color = "#10b981"; 
+                    return; 
                 }
-                
-                // If the primary says offline, try the Backup API just in case
                 let backupResponse = await fetch('https://api.minetools.eu/ping/play.atlantismc.fun');
                 let backupData = await backupResponse.json();
-                
                 if (!backupData.error) {
                     slotsElement.innerText = backupData.players.online + " / " + backupData.players.max;
-                    slotsElement.style.color = "#10b981"; // Success Green
+                    slotsElement.style.color = "#10b981"; 
                 } else {
                     slotsElement.innerText = "Node Offline";
-                    slotsElement.style.color = "#ef4444"; // Error Red
+                    slotsElement.style.color = "#ef4444"; 
                 }
-
             } catch (error) {
-                console.error("All ping pipelines failed:", error);
                 slotsElement.innerText = "Network Unavailable";
-                slotsElement.style.color = "#f59e0b"; // Warning Orange
+                slotsElement.style.color = "#f59e0b"; 
             }
         }
-
-        // Run the ping function instantly on page load
         fetchPlayerCount();
-        
-        // Refresh the ping every 45 seconds to keep the numbers live
         setInterval(fetchPlayerCount, 45000);
-        
     </script>
 </body>
 </html>
