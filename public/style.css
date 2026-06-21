@@ -1,0 +1,248 @@
+/* =========================================
+   ATLANTISMC - BRACE THEME (DARK & GOLD)
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
+
+/* --- GLOBAL STYLES --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d;
+    background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 100%);
+    color: #e2e8f0;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.main-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- TYPOGRAPHY & LOGO --- */
+.hero-logo {
+    max-width: 280px;
+    height: auto;
+    filter: drop-shadow(0 15px 25px rgba(255, 170, 0, 0.4));
+    animation: float 4s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+.neon-text {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(255, 170, 0, 0.6);
+    background: linear-gradient(180deg, #ffe066 0%, #ffaa00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ffcc00, #ff8800);
+    color: #000;
+    box-shadow: 0 5px 15px rgba(255, 170, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(255, 170, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-discord {
+    background: #5865F2;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+}
+
+.btn-discord:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+}
+
+.btn-dark {
+    background: #1e1e1e;
+    color: #ffaa00;
+    border: 2px solid #333;
+}
+
+.btn-dark:hover {
+    background: #2a2a2a;
+    border-color: #ffaa00;
+    transform: translateY(-4px);
+}
+
+.btn-success {
+    background: #10b981;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-success:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+}
+
+/* --- GRIDS & LAYOUTS --- */
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* --- PANELS & CARDS (Replacing Glassmorphism with Brace Gaming Style) --- */
+.glass-panel {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #ffaa00;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-node, .store-item {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card-node:hover, .store-item:hover {
+    border-color: #ffaa00;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 170, 0, 0.1);
+}
+
+.store-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #10b981;
+    margin: 15px 0;
+}
+
+.store-price del {
+    font-size: 1rem;
+    color: #ef4444;
+    margin-left: 8px;
+}
+
+/* --- IP COPIER --- */
+.ip-copier {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: #0a0a0a;
+    border: 2px solid #333;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px auto;
+}
+
+.ip-copier:hover {
+    border-color: #ffaa00;
+    background: #111;
+    transform: scale(1.02);
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: pulse 2s infinite;
+}
+
+/* --- TOAST NOTIFICATIONS --- */
+.toast-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 20px;
+    background: #10b981;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100000;
+}
+
+.toast-msg.show {
+    bottom: 20px;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
+    font-size: 0.9rem;
+    border-top: 1px solid #1e1e1e;
+    margin-top: 50px;
+}
+
+/* --- RESPONSIVE MOBILE FIXES --- */
+@media (max-width: 768px) {
+    .neon-text { font-size: 2rem; }
+    .hero-logo { max-width: 200px; }
+    .ip-copier { flex-direction: column; padding: 15px; text-align: center; border-radius: 12px; }
+    .btn-grid { grid-template-columns: 1fr; }
+        }
+
