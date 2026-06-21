@@ -10,10 +10,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// The Critical Discord Webhook
 const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1509503321730322533/_5O-ubMnc25DAH2lXU4TMhCMLTOkJAvudcqA-bN_PlPGHXCnmwC4gW-X1NLvovq9fZ3g';
 
-// THE FIX: Telling Helmet to allow our store buttons to actually run!
 app.use(helmet({
     contentSecurityPolicy: false
 })); 
@@ -22,50 +20,44 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// NEW FEATURE: Simple Request Logger (Helps you track traffic in Render console)
+// Traffic monitoring engine
 app.use((req, res, next) => {
-    console.log(`[NETWORK TRAFFIC] ${req.method} request to ${req.url}`);
+    console.log(`[NODE ROUTER] ${req.method} route accessed: ${req.url}`);
     next();
 });
 
-// THE MAGIC FIX: This automatically hides .html from your URLs!
-app.use(express.static(path.join(__dirname, 'public'), { 
-    extensions: ['html'] 
-}));
+// Mask static file extensions to enable Clean URLs across all template views
+app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 
-// Rate Limiter: Blocks DDoS and Form Spam
-const checkoutLimiter = rateLimit({
-    windowMs: 10 * 60 * 1000, 
-    max: 5, 
-    message: { success: false, message: "Security Node: Too many requests. Try again in 10 minutes." }
+// Rate limiter to safeguard endpoint processing nodes
+const orderLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000, 
+    max: 3, 
+    message: { success: false, message: "Security Gateway: Order rate exceeded. Please check Discord." }
 });
 
-// Secure Administrator Gateway
 app.use('/admin', basicAuth({
     users: { 'admin': 'atlantis123' }, 
     challenge: true,
-    realm: 'AtlantisMC Cloud Network'
+    realm: 'AtlantisMC Secure Node'
 }));
 
-// API: Secure Checkout Pipeline with UTR Verification
-app.post('/api/checkout', checkoutLimiter, async (req, res) => {
+// UPGRADED API: Direct submission pipeline without UTR code blocks
+app.post('/api/checkout', orderLimiter, async (req, res) => {
     try {
         const ign = validator.escape(req.body.username ? req.body.username.trim() : 'Unknown');
         const discord = validator.escape(req.body.discord ? req.body.discord.trim() : 'Unknown');
-        const utr = validator.escape(req.body.utr ? req.body.utr.trim() : 'Missing UTR');
-        const item = validator.escape(req.body.item || 'Generic Item');
+        const item = validator.escape(req.body.item || 'Generic Asset');
         const price = Number(req.body.price) || 0;
 
-        // Auto-generate Log Entry
-        const orderLog = {
+        const orderPayload = {
             id: Date.now(),
             timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             username: ign,
             discord: discord,
-            utr_code: utr,
             item: item,
             price: price,
-            status: "Awaiting Staff UTR Check"
+            status: "Awaiting Manual Reconciliation"
         };
 
         const logPath = path.join(__dirname, 'logs.json');
@@ -79,43 +71,40 @@ app.post('/api/checkout', checkoutLimiter, async (req, res) => {
             }
         }
         
-        currentLogs.push(orderLog);
+        currentLogs.push(orderPayload);
         fs.writeFileSync(logPath, JSON.stringify(currentLogs, null, 2), 'utf8');
 
-        // Dispatch Discord Webhook Receipt
+        // Instant dispatch loop to Discord Staff channel
         if (DISCORD_WEBHOOK_URL) {
             const embedPayload = {
                 embeds: [{
-                    title: "💳 New Fampay Transaction Logged!",
-                    color: 16021504, 
+                    title: "🔔 QR Code Payment Intention Dispatched!",
+                    color: 16753920, 
                     fields: [
                         { name: "Minecraft IGN", value: `\`${ign}\``, inline: true },
-                        { name: "Discord Profile", value: `\`${discord}\``, inline: true },
-                        { name: "Requested Item", value: `**${item}**`, inline: false },
-                        { name: "Expected Payment", value: `₹${price}`, inline: true },
-                        { name: "12-Digit UTR Code", value: `\`${utr}\``, inline: true }
+                        { name: "Discord Tag", value: `\`${discord}\``, inline: true },
+                        { name: "Selected Package", value: `**${item}**`, inline: false },
+                        { name: "Amount To Verify", value: `₹${price}`, inline: true },
+                        { name: "Status", value: `\`Checking FamPay Balance\``, inline: true }
                     ],
-                    footer: { text: `AtlantisMC Secure Node • ${orderLog.timestamp}` }
+                    footer: { text: `AtlantisMC Billing Router • ${orderPayload.timestamp}` }
                 }]
             };
-            try {
-                await fetch(DISCORD_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(embedPayload)
-                });
-            } catch (e) { 
-                console.error("Webhook dispatch error"); 
-            }
+            
+            await fetch(DISCORD_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(embedPayload)
+            });
         }
 
-        res.status(200).json({ success: true, message: "Transaction secured in database." });
+        res.status(200).json({ success: true, message: "Order logged. Staff alerted for verification." });
     } catch (error) {
-        res.status(500).json({ success: false, message: "Internal server anomaly." });
+        console.error("Pipeline failure:", error);
+        res.status(500).json({ success: false, message: "Internal server handling anomaly." });
     }
 });
 
-// API: Pro SaaS Admin Dashboard Generator
 app.get('/admin', (req, res) => {
     const logPath = path.join(__dirname, 'logs.json');
     let currentLogs = [];
@@ -133,13 +122,13 @@ app.get('/admin', (req, res) => {
     let rowsHtml = '';
     currentLogs.reverse().forEach(log => {
         rowsHtml += `
-            <tr style="border-bottom: 1px solid #1e293b; background: rgba(15, 23, 42, 0.4); transition: all 0.2s;">
+            <tr style="border-bottom: 1px solid #1e293b; background: rgba(15, 23, 42, 0.4);">
                 <td style="padding: 15px;">${log.timestamp}</td>
                 <td style="padding: 15px;"><span style="background: #0284c7; color: #fff; padding: 4px 8px; border-radius: 6px; font-weight: bold;">${log.username}</span></td>
                 <td style="padding: 15px;"><strong>${log.item}</strong></td>
-                <td style="padding: 15px; color: #10b981; font-weight: 900; font-size: 16px;">₹${log.price}</td>
-                <td style="padding: 15px; color: #f59e0b; font-family: monospace; font-size: 16px;">${log.utr_code}</td>
+                <td style="padding: 15px; color: #10b981; font-weight: 900;">₹${log.price}</td>
                 <td style="padding: 15px;">${log.discord}</td>
+                <td style="padding: 15px; color: #f59e0b;">${log.status}</td>
             </tr>`;
     });
 
@@ -148,41 +137,38 @@ app.get('/admin', (req, res) => {
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>AtlantisMC | Cloud Console</title>
-            <style>body { background: #020617; color: #cbd5e1; font-family: system-ui, sans-serif; padding: 20px; margin: 0; }</style>
+            <title>AtlantisMC | Telemetry Node</title>
+            <style>body { background: #020617; color: #cbd5e1; font-family: system-ui, sans-serif; padding: 20px; }</style>
         </head>
         <body>
             <div style="max-width: 1200px; margin: 0 auto;">
                 <header style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 25px;">
-                    <h1 style="color: #00d2ff; margin: 0;">AtlantisMC Command Center</h1>
-                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px;">🟢 Systems Nominal</div>
+                    <h1 style="color: #00d2ff; margin: 0;">Infrastructure Telemetry Panel</h1>
+                    <div style="color: #10b981; font-weight: bold;">🟢 Systems Active</div>
                 </header>
-                
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
                     <div style="background: #0f172a; border: 1px solid #1e293b; padding: 25px; border-radius: 12px; text-align: center;">
-                        <h3 style="color: #94a3b8; font-size: 14px; text-transform: uppercase; margin: 0 0 10px 0;">Gross Revenue</h3>
-                        <p style="color: #10b981; font-size: 36px; font-weight: 900; margin: 0;">₹${totalRev}</p>
+                        <h3 style="color: #94a3b8; margin: 0;">Unreconciled Revenue Pipeline</h3>
+                        <p style="color: #10b981; font-size: 36px; font-weight: 900; margin: 10px 0 0 0;">₹${totalRev}</p>
                     </div>
                     <div style="background: #0f172a; border: 1px solid #1e293b; padding: 25px; border-radius: 12px; text-align: center;">
-                        <h3 style="color: #94a3b8; font-size: 14px; text-transform: uppercase; margin: 0 0 10px 0;">Total Orders Logged</h3>
-                        <p style="color: #f59e0b; font-size: 36px; font-weight: 900; margin: 0;">${currentLogs.length}</p>
+                        <h3 style="color: #94a3b8; margin: 0;">Total Intentions Logged</h3>
+                        <p style="color: #f59e0b; font-size: 36px; font-weight: 900; margin: 10px 0 0 0;">${currentLogs.length}</p>
                     </div>
                 </div>
-
                 <div style="background: #0f172a; border-radius: 12px; border: 1px solid #1e293b; overflow-x: auto;">
                     <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 900px;">
                         <thead>
-                            <tr style="background: #1e293b; color: #38bdf8; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
-                                <th style="padding: 15px;">Date & Time</th>
+                            <tr style="background: #1e293b; color: #38bdf8; text-transform: uppercase; font-size: 12px;">
+                                <th style="padding: 15px;">Timestamp</th>
                                 <th style="padding: 15px;">Player IGN</th>
                                 <th style="padding: 15px;">Package</th>
-                                <th style="padding: 15px;">Amount</th>
-                                <th style="padding: 15px;">Fampay UTR (12-Digit)</th>
+                                <th style="padding: 15px;">Price Node</th>
                                 <th style="padding: 15px;">Discord Profile</th>
+                                <th style="padding: 15px;">State</th>
                             </tr>
                         </thead>
-                        <tbody>${rowsHtml ? rowsHtml : '<tr><td colspan="6" style="text-align:center; padding: 40px; color:#64748b;">Awaiting incoming transactions...</td></tr>'}</tbody>
+                        <tbody>${rowsHtml ? rowsHtml : '<tr><td colspan="6" style="text-align:center; padding: 40px;">No transaction entries mapped yet.</td></tr>'}</tbody>
                     </table>
                 </div>
             </div>
@@ -191,10 +177,8 @@ app.get('/admin', (req, res) => {
     `);
 });
 
-// NEW FEATURE: 404 Fallback Route
-// If a player types a broken link (like atlantismc.fun/stor), this automatically sends them back to the main hub instead of crashing.
-app.use((req, res) => {
-    res.redirect('/');
-});
+// Fallback path router to keep mobile and desktop loops fluid
+app.use((req, res) => { res.redirect('/'); });
 
-app.listen(PORT, () => console.log(`[INFRASTRUCTURE ONLINE]: AtlantisMC running on port ${PORT}`));
+app.listen(PORT, () => console.log(`[PRO ENGINE ONLINE]: Routing cluster initialized on port ${PORT}`));
+        
