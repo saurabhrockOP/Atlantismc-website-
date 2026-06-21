@@ -2,172 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>AtlantisMC Network | Webstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlantisMC | Store</title>
+    
+    <!-- Brace Template ki CSS link -->
+    <link rel="stylesheet" href="style.css"> 
     <link rel="icon" href="nav-logo.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
+
     <style>
+        /* Hamara Secure Checkout Modal (Brace theme ke colors ke hisaab se) */
         #secureModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 99999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.85); z-index: 99999; align-items: center; justify-content: center;
         }
         .modal-box {
-            background: #0b1329; border: 2px solid #00d2ff; border-radius: 16px; width: 100%; max-width: 440px;
-            padding: 30px; box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); position: relative; color: #fff;
+            background: #111; border: 2px solid #ffaa00; border-radius: 10px; width: 100%; max-width: 450px;
+            padding: 30px; color: #fff; font-family: sans-serif;
         }
-        .store-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px;
+        .modal-input {
+            width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; margin-bottom: 15px; border-radius: 5px; box-sizing: border-box;
         }
-        .package-card {
-            background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px; text-align: center;
+        .btn-gold {
+            width: 100%; padding: 12px; background: #ffaa00; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; text-transform: uppercase;
         }
-        .package-card h3 { margin: 0 0 10px 0; color: #fff; }
-        .price-tag { font-size: 1.5rem; font-weight: 900; color: #10b981; margin: 10px 0 20px 0; }
-        .input-node { width: 100%; padding: 12px; background: #020617; border: 1px solid #334155; border-radius: 8px; color: #fff; margin-bottom: 15px; box-sizing: border-box; }
+        .btn-gold:hover { background: #ffcc00; }
+        .store-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px; }
+        .store-card { background: #1a1a1a; border: 1px solid #333; padding: 20px; border-radius: 8px; text-align: center; width: 250px; }
     </style>
 </head>
 <body>
 
-    <div id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: #020617;"></div>
-
-    <header style="text-align: center; padding: 40px 20px;">
-        <a href="/" style="color: #00d2ff; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 15px;">← Return to Main Hub</a>
-        <h1 class="neon-text">Secure Network Webstore</h1>
-        <p style="color: #94a3b8; max-width: 500px; margin: 10px auto;">Ranks and assets scale automatically to your account character nodes via secure network triggers.</p>
+    <!-- Brace Template ka Header/Navbar yahan aap copy kar sakte ho apni index.html se -->
+    <header style="text-align: center; padding: 50px 20px;">
+        <a href="/" style="color: #ffaa00; text-decoration: none; font-weight: bold;">← Back to Home</a>
+        <br><br>
+        <img src="logo.png" alt="AtlantisMC" style="max-width: 250px;">
+        <h1 style="color: #fff; margin-top: 20px;">Premium Store</h1>
     </header>
 
-    <!-- RANKS MATRIX -->
-    <h2 style="text-align:center; color:#f59e0b; margin-top:40px;">👑 Elite Rank Tiers</h2>
-    <div class="store-grid">
-        <div class="package-card">
-            <h3>Olympian Tier</h3>
-            <p class="price-tag">₹250</p>
-            <button class="btn btn-primary" onclick="initiateCheckout('Olympian Rank', 250)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
+    <main style="max-width: 1000px; margin: 0 auto; padding: 20px; color: #fff;">
+        
+        <h2 style="text-align: center; color: #ffaa00;">Ranks</h2>
+        <div class="store-grid">
+            <div class="store-card">
+                <h3>Olympian</h3>
+                <h2 style="color: #00ff00;">₹250</h2>
+                <button class="btn-gold" onclick="openCheckout('Olympian Rank', 250)">Buy Now</button>
+            </div>
+            <div class="store-card">
+                <h3>Demigod</h3>
+                <h2 style="color: #00ff00;">₹180</h2>
+                <button class="btn-gold" onclick="openCheckout('Demigod Rank', 180)">Buy Now</button>
+            </div>
+            <div class="store-card">
+                <h3>Spartan</h3>
+                <h2 style="color: #00ff00;">₹120</h2>
+                <button class="btn-gold" onclick="openCheckout('Spartan Rank', 120)">Buy Now</button>
+            </div>
         </div>
-        <div class="package-card">
-            <h3>Demigod Tier</h3>
-            <p class="price-tag">₹180</p>
-            <button class="btn btn-primary" onclick="initiateCheckout('Demigod Rank', 180)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
-        </div>
-        <div class="package-card">
-            <h3>Spartan Tier</h3>
-            <p class="price-tag">₹120</p>
-            <button class="btn btn-primary" onclick="initiateCheckout('Spartan Rank', 120)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
-        </div>
-        <div class="package-card" style="border: 1px solid #f59e0b; box-shadow: 0 0 15px rgba(245,158,11,0.2);">
-            <h3>Titan Tier</h3>
-            <p class="price-tag" style="color:#f59e0b;">₹80</p>
-            <button class="btn" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold; background:#f59e0b; color:#000; border:none;" onclick="initiateCheckout('Titan Rank', 80)">Purchase</button>
-        </div>
-    </div>
 
-    <!-- CRATES MATRIX -->
-    <h2 style="text-align:center; color:#00d2ff; margin-top:40px;">🗝️ Key Authorization Matrix</h2>
-    <div class="store-grid">
-        <div class="package-card">
-            <h3>Prime Key</h3>
-            <p class="price-tag">₹50</p>
-            <input type="number" id="v-prime" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
-            <button class="btn btn-dark" onclick="initiateKeyCheckout('Prime Key', 50, 'v-prime')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
-        </div>
-        <div class="package-card">
-            <h3>Crimson Key</h3>
-            <p class="price-tag">₹40</p>
-            <input type="number" id="v-crimson" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
-            <button class="btn btn-dark" onclick="initiateKeyCheckout('Crimson Key', 40, 'v-crimson')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
-        </div>
-        <div class="package-card">
-            <h3>Amethyst Key</h3>
-            <p class="price-tag">₹25</p>
-            <input type="number" id="v-amethyst" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
-            <button class="btn btn-dark" onclick="initiateKeyCheckout('Amethyst Key', 25, 'v-amethyst')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
-        </div>
-        <div class="package-card">
-            <h3>Gold Key</h3>
-            <p class="price-tag">₹15</p>
-            <input type="number" id="v-gold" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
-            <button class="btn btn-dark" onclick="initiateKeyCheckout('Gold Key', 15, 'v-gold')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
-        </div>
-    </div>
+    </main>
 
-    <!-- PIPELINE MODAL ENGINE -->
+    <!-- HAMARA NAYA BRAIN: Direct QR Modal (No UTR) -->
     <div id="secureModal">
         <div class="modal-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1e293b; padding-bottom:10px; margin-bottom:20px;">
-                <h3 style="margin:0; color:#00d2ff;">SECURE PAYMENT STREAM</h3>
-                <span onclick="closePipeline()" style="cursor:pointer; font-size:1.5rem; color:#64748b;">&times;</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: #ffaa00;">Checkout</h3>
+                <span onclick="closeModal()" style="cursor: pointer; font-size: 1.5rem;">&times;</span>
             </div>
             
             <form id="billingForm">
-                <div style="margin-bottom:15px;">
-                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:5px;">Target Allocation</label>
-                    <input type="text" id="targetItem" class="input-node" style="color:#94a3b8; cursor:not-allowed;" readonly>
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:5px;">Required Transfer Total</label>
-                    <input type="text" id="targetPrice" class="input-node" style="color:#10b981; font-weight:bold; font-size:1.1rem; cursor:not-allowed;" readonly>
-                </div>
-
-                <!-- STEP 1 VIEW -->
-                <div id="modalStep1">
-                    <input type="text" id="p-ign" class="input-node" placeholder="Minecraft Character Username" required>
-                    <input type="text" id="p-discord" class="input-node" placeholder="Discord User Profile (ID)" required>
-                    <button type="button" class="btn btn-primary" style="width:100%; padding:12px; font-weight:bold; border-radius:8px;" onclick="advanceToPayment()">Generate Secure QR Link</button>
+                <input type="text" id="targetItem" class="modal-input" readonly>
+                <input type="text" id="targetPrice" class="modal-input" style="color: #00ff00; font-weight: bold;" readonly>
+                
+                <div id="step1">
+                    <input type="text" id="p-ign" class="modal-input" placeholder="Minecraft Username" required>
+                    <input type="text" id="p-discord" class="modal-input" placeholder="Discord ID" required>
+                    <button type="button" class="btn-gold" onclick="nextStep()">Proceed</button>
                 </div>
 
-                <!-- STEP 2 VIEW: Instant logging gateway without UTR checks -->
-                <div id="modalStep2" style="display:none; text-align:center;">
-                    <p style="color:#f59e0b; font-size:0.9rem; margin-bottom:15px;">Scan through FamPay/UPI Node to route payment assets:</p>
-                    <img src="1000300514.jpg" style="width:180px; height:180px; border-radius:8px; border:2px solid #1e293b; margin:0 auto 20px auto; display:block;" alt="UPI QR Endpoint">
+                <div id="step2" style="display: none; text-align: center;">
+                    <p style="color: #ccc; font-size: 0.9rem;">Scan and pay using any UPI app:</p>
+                    <img src="1000300514.jpg" alt="UPI QR" style="width: 200px; border-radius: 10px; margin-bottom: 20px;">
                     
-                    <div style="background:rgba(255,255,255,0.03); border:1px dashed #334155; padding:12px; border-radius:8px; margin-bottom:20px; text-align:left;">
-                        <label style="display:flex; align-items:center; cursor:pointer; font-size:0.85rem; color:#cbd5e1;">
-                            <input type="checkbox" id="payConfirm" style="margin-right:10px;" required>
-                            I have successfully transferred the verified amount via the QR module.
-                        </label>
-                    </div>
-                    <button type="submit" id="submitOrderBtn" class="btn btn-success" style="width:100%; padding:12px; font-weight:bold; border-radius:8px; border:none; background:#10b981; color:#fff;">Confirm Transfer & Notify Staff</button>
+                    <label style="display: block; text-align: left; font-size: 0.85rem; color: #aaa; margin-bottom: 20px;">
+                        <input type="checkbox" id="payConfirm" required> I have scanned the QR and paid the exact amount.
+                    </label>
+                    <button type="submit" id="submitBtn" class="btn-gold">Notify Staff & Claim</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        window.activeItem = ""; window.activePrice = 0;
+        window.itemName = ""; window.itemPrice = 0;
         
-        function initiateCheckout(name, price) {
-            window.activeItem = name; window.activePrice = price;
+        function openCheckout(name, price) {
+            window.itemName = name; window.itemPrice = price;
             document.getElementById('targetItem').value = name;
             document.getElementById('targetPrice').value = "₹" + price;
             document.getElementById('secureModal').style.display = 'flex';
         }
-        function initiateKeyCheckout(name, price, inputId) {
-            let qty = parseInt(document.getElementById(inputId).value) || 1;
-            initiateCheckout(qty + "x " + name, price * qty);
-        }
-        function closePipeline() {
+        function closeModal() {
             document.getElementById('secureModal').style.display = 'none';
-            document.getElementById('modalStep1').style.display = 'block';
-            document.getElementById('modalStep2').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
             document.getElementById('billingForm').reset();
         }
-        function advanceToPayment() {
+        function nextStep() {
             if(!document.getElementById('p-ign').value || !document.getElementById('p-discord').value) {
-                alert("⚠️ Missing verification details. Complete all inputs."); return;
+                alert("Please enter IGN and Discord."); return;
             }
-            document.getElementById('modalStep1').style.display = 'none';
-            document.getElementById('modalStep2').style.display = 'block';
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
         }
 
         document.getElementById('billingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            if(!document.getElementById('payConfirm').checked) {
-                alert("⚠️ Acknowledge the payment confirmation checkbox to route the pipeline."); return;
-            }
+            if(!document.getElementById('payConfirm').checked) return;
 
-            const btn = document.getElementById('submitOrderBtn');
-            btn.innerText = "Dispatching Intent Code..."; btn.style.opacity = "0.6";
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing..."; btn.style.opacity = "0.7";
 
             fetch('/api/checkout', {
                 method: 'POST',
@@ -175,21 +130,20 @@
                 body: JSON.stringify({
                     username: document.getElementById('p-ign').value,
                     discord: document.getElementById('p-discord').value,
-                    item: window.activeItem,
-                    price: window.activePrice
+                    item: window.itemName,
+                    price: window.itemPrice
                 })
             })
             .then(res => res.json())
             .then(data => {
                 if(data.success) {
-                    alert("✅ Intent Signal Dispatched! Staff will verify the balance route and log your items on the network node.");
-                    closePipeline();
-                } else { alert("⚠️ Terminal rejection: " + data.message); }
+                    alert("✅ Success! Request sent to staff. Please wait while we verify the payment.");
+                    closeModal();
+                } else { alert("Error: " + data.message); }
             })
-            .catch(() => alert("⚠️ Link pipeline dropped. Check your connection network."))
-            .finally(() => { btn.innerText = "Confirm Transfer & Notify Staff"; btn.style.opacity = "1"; });
+            .catch(() => alert("Network Error!"))
+            .finally(() => { btn.innerText = "Notify Staff & Claim"; btn.style.opacity = "1"; });
         });
     </script>
 </body>
 </html>
-
