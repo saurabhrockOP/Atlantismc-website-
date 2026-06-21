@@ -3,275 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>AtlantisMC Store | Secure Checkout</title>
-    
-    <link rel="icon" href="1000292141.png" type="image/png">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="💎 AtlantisMC | Premium Lifesteal Network">
-    <meta property="og:description" content="⚔️ India's #1 Lifesteal Experience is LIVE! ⚡ Zero Lag (5ms Ping) • Ryzen 9 Hardware • Active Community. Click here to enter the official hub and claim your rewards today!">
-    <meta property="og:url" content="https://store.atlantismc.fun/">
-    <meta property="og:image" content="https://store.atlantismc.fun/1000292141.png">
-    <meta name="theme-color" content="#f59e0b">
-    
+    <title>AtlantisMC Network | Webstore</title>
+    <link rel="icon" href="nav-logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    
     <style>
         #secureModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             z-index: 99999; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
         }
         .modal-box {
-            background: #09101d; border: 2px solid #00d2ff; border-radius: 16px; width: 100%; max-width: 450px;
-            padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); position: relative;
+            background: #0b1329; border: 2px solid #00d2ff; border-radius: 16px; width: 100%; max-width: 440px;
+            padding: 30px; box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); position: relative; color: #fff;
         }
-        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 100000; }
+        .store-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 30px auto; padding: 0 20px;
+        }
+        .package-card {
+            background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px; text-align: center;
+        }
+        .package-card h3 { margin: 0 0 10px 0; color: #fff; }
+        .price-tag { font-size: 1.5rem; font-weight: 900; color: #10b981; margin: 10px 0 20px 0; }
+        .input-node { width: 100%; padding: 12px; background: #020617; border: 1px solid #334155; border-radius: 8px; color: #fff; margin-bottom: 15px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
-    <div id="toast-rack" class="toast-container"></div>
-    
-    <!-- Interactive Canvas Background for Store -->
-    <canvas id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: linear-gradient(180deg, #020617 0%, #0f172a 100%);"></canvas>
+    <div id="particleCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: #020617;"></div>
 
-    <header class="main-wrapper" style="padding-bottom: 0; text-align: center;">
-        <a href="/" style="color: #00d2ff; text-decoration: none; font-size: 0.95rem; font-weight: bold; margin-bottom: 20px; display: inline-block;">← Return to Main Hub</a>
-        <br>
-        
-        <img src="1000292141.png" alt="AtlantisMC Logo" style="width: 120px; height: auto; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.5)); margin-bottom: 15px;">
-        
-        <h1 class="neon-text">Secure Webstore</h1>
-        
-        <p style="font-size: 1rem; margin-top: 15px; color: #cbd5e1; background: rgba(245, 158, 11, 0.15); padding: 12px; border-radius: 8px; border: 1px dashed #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1); width: 100%; max-width: 600px; margin-left: auto; margin-right: auto;">
-            🔥 Flash Sale: All Rank Tiers are currently carrying a massive <span style="color: #f59e0b; font-weight: 900;">20% Discount</span> markdown!
-        </p>
+    <header style="text-align: center; padding: 40px 20px;">
+        <a href="/" style="color: #00d2ff; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 15px;">← Return to Main Hub</a>
+        <h1 class="neon-text">Secure Network Webstore</h1>
+        <p style="color: #94a3b8; max-width: 500px; margin: 10px auto;">Ranks and assets scale automatically to your account character nodes via secure network triggers.</p>
     </header>
 
-    <main class="main-wrapper">
-        <h2 style="font-size: 1.5rem; color: #f59e0b; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin-bottom: 20px;">👑 Premium Ranks</h2>
-        <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
-            <div class="glass-panel store-item">
-                <h3>Olympian Tier</h3>
-                <p class="store-price">₹250 <del>₹312</del></p>
-                <button type="button" class="btn btn-primary" onclick="openCheckout('Olympian Rank', 250)">Acquire Rank</button>
-            </div>
-            <div class="glass-panel store-item">
-                <h3>Demigod Tier</h3>
-                <p class="store-price">₹180 <del>₹225</del></p>
-                <button type="button" class="btn btn-primary" onclick="openCheckout('Demigod Rank', 180)">Acquire Rank</button>
-            </div>
-            <div class="glass-panel store-item">
-                <h3>Spartan Tier</h3>
-                <p class="store-price">₹120 <del>₹150</del></p>
-                <button type="button" class="btn btn-primary" onclick="openCheckout('Spartan Rank', 120)">Acquire Rank</button>
-            </div>
-            <div class="glass-panel store-item" style="border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); transform: scale(1.02);">
-                <p style="color: #f59e0b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 5px; text-transform: uppercase;">⭐ Best Value</p>
-                <h3>Titan Tier</h3>
-                <p class="store-price">₹80 <del>₹100</del></p>
-                <button type="button" class="btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none;" onclick="openCheckout('Titan Rank', 80)">Acquire Rank</button>
-            </div>
+    <!-- RANKS MATRIX -->
+    <h2 style="text-align:center; color:#f59e0b; margin-top:40px;">👑 Elite Rank Tiers</h2>
+    <div class="store-grid">
+        <div class="package-card">
+            <h3>Olympian Tier</h3>
+            <p class="price-tag">₹250</p>
+            <button class="btn btn-primary" onclick="initiateCheckout('Olympian Rank', 250)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
         </div>
-
-        <h2 style="font-size: 1.5rem; color: #00d2ff; width: 100%; border-bottom: 2px solid #1e293b; padding-bottom: 10px; margin: 40px 0 20px 0;">🗝️ Crate Keys Matrix</h2>
-        <div class="btn-grid" style="margin-top: 0; max-width: 100%;">
-            <div class="glass-panel store-item">
-                <h3>Prime Crate Key</h3>
-                <p class="store-price">₹50 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-prime" value="1" min="1"></div>
-                <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Prime Crate Key', 50, 'q-prime')">Purchase Keys</button>
-            </div>
-            <div class="glass-panel store-item">
-                <h3>Crimson Crate Key</h3>
-                <p class="store-price">₹40 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-crimson" value="1" min="1"></div>
-                <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Crimson Crate Key', 40, 'q-crimson')">Purchase Keys</button>
-            </div>
-            <div class="glass-panel store-item">
-                <h3>Amethyst Crate Key</h3>
-                <p class="store-price">₹25 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-amethyst" value="1" min="1"></div>
-                <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Amethyst Crate Key', 25, 'q-amethyst')">Purchase Keys</button>
-            </div>
-            <div class="glass-panel store-item">
-                <h3>Gold Crate Key</h3>
-                <p class="store-price">₹15 <span style="font-size:0.8rem; color:#94a3b8;">/ unit</span></p>
-                <div class="qty-box"><label style="font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 5px;">Quantity:</label><input type="number" id="q-gold" value="1" min="1"></div>
-                <button type="button" class="btn btn-dark" onclick="openKeyCheckout('Gold Crate Key', 15, 'q-gold')">Purchase Keys</button>
-            </div>
+        <div class="package-card">
+            <h3>Demigod Tier</h3>
+            <p class="price-tag">₹180</p>
+            <button class="btn btn-primary" onclick="initiateCheckout('Demigod Rank', 180)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
         </div>
-    </main>
+        <div class="package-card">
+            <h3>Spartan Tier</h3>
+            <p class="price-tag">₹120</p>
+            <button class="btn btn-primary" onclick="initiateCheckout('Spartan Rank', 120)" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold;">Purchase</button>
+        </div>
+        <div class="package-card" style="border: 1px solid #f59e0b; box-shadow: 0 0 15px rgba(245,158,11,0.2);">
+            <h3>Titan Tier</h3>
+            <p class="price-tag" style="color:#f59e0b;">₹80</p>
+            <button class="btn" style="width:100%; padding:10px; border-radius:6px; cursor:pointer; font-weight:bold; background:#f59e0b; color:#000; border:none;" onclick="initiateCheckout('Titan Rank', 80)">Purchase</button>
+        </div>
+    </div>
 
+    <!-- CRATES MATRIX -->
+    <h2 style="text-align:center; color:#00d2ff; margin-top:40px;">🗝️ Key Authorization Matrix</h2>
+    <div class="store-grid">
+        <div class="package-card">
+            <h3>Prime Key</h3>
+            <p class="price-tag">₹50</p>
+            <input type="number" id="v-prime" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
+            <button class="btn btn-dark" onclick="initiateKeyCheckout('Prime Key', 50, 'v-prime')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
+        </div>
+        <div class="package-card">
+            <h3>Crimson Key</h3>
+            <p class="price-tag">₹40</p>
+            <input type="number" id="v-crimson" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
+            <button class="btn btn-dark" onclick="initiateKeyCheckout('Crimson Key', 40, 'v-crimson')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
+        </div>
+        <div class="package-card">
+            <h3>Amethyst Key</h3>
+            <p class="price-tag">₹25</p>
+            <input type="number" id="v-amethyst" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
+            <button class="btn btn-dark" onclick="initiateKeyCheckout('Amethyst Key', 25, 'v-amethyst')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
+        </div>
+        <div class="package-card">
+            <h3>Gold Key</h3>
+            <p class="price-tag">₹15</p>
+            <input type="number" id="v-gold" class="input-node" value="1" min="1" style="text-align:center; margin-bottom:10px;">
+            <button class="btn btn-dark" onclick="initiateKeyCheckout('Gold Key', 15, 'v-gold')" style="width:100%; padding:10px; border-radius:6px; cursor:pointer;">Buy Matrix</button>
+        </div>
+    </div>
+
+    <!-- PIPELINE MODAL ENGINE -->
     <div id="secureModal">
         <div class="modal-box">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 20px;">
-                <h2 style="color: #00d2ff; font-size: 1.4rem; text-transform: uppercase; margin: 0;">Secure Checkout</h2>
-                <span onclick="closeCheckout()" style="font-size: 2rem; color: #94a3b8; cursor: pointer; line-height: 1;">&times;</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1e293b; padding-bottom:10px; margin-bottom:20px;">
+                <h3 style="margin:0; color:#00d2ff;">SECURE PAYMENT STREAM</h3>
+                <span onclick="closePipeline()" style="cursor:pointer; font-size:1.5rem; color:#64748b;">&times;</span>
             </div>
-            <form id="checkoutForm">
-                <div style="margin-bottom: 18px; text-align: left;">
-                    <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Selected Package</label>
-                    <input type="text" id="m-item" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #94a3b8; font-size: 16px; cursor: not-allowed; box-sizing: border-box;" readonly>
+            
+            <form id="billingForm">
+                <div style="margin-bottom:15px;">
+                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:5px;">Target Allocation</label>
+                    <input type="text" id="targetItem" class="input-node" style="color:#94a3b8; cursor:not-allowed;" readonly>
                 </div>
-                <div style="margin-bottom: 18px; text-align: left;">
-                    <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Total Payment Due</label>
-                    <input type="text" id="m-price" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #10b981; font-weight: 900; font-size: 1.2rem; cursor: not-allowed; box-sizing: border-box;" readonly>
+                <div style="margin-bottom:20px;">
+                    <label style="font-size:0.8rem; color:#94a3b8; display:block; margin-bottom:5px;">Required Transfer Total</label>
+                    <input type="text" id="targetPrice" class="input-node" style="color:#10b981; font-weight:bold; font-size:1.1rem; cursor:not-allowed;" readonly>
                 </div>
-                <div id="step-1">
-                    <div style="margin-bottom: 18px; text-align: left;">
-                        <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Minecraft Username *</label>
-                        <input type="text" id="m-ign" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="Exact In-Game Name" required>
-                    </div>
-                    <div style="margin-bottom: 18px; text-align: left;">
-                        <label style="display: block; font-size: 0.85rem; font-weight: bold; color: #94a3b8; margin-bottom: 6px;">Discord ID *</label>
-                        <input type="text" id="m-discord" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box;" placeholder="e.g., player#1234" required>
-                    </div>
-                    <button type="button" class="btn btn-primary" style="margin-top: 25px; width: 100%;" onclick="proceedToQR()">Proceed to Pay</button>
+
+                <!-- STEP 1 VIEW -->
+                <div id="modalStep1">
+                    <input type="text" id="p-ign" class="input-node" placeholder="Minecraft Character Username" required>
+                    <input type="text" id="p-discord" class="input-node" placeholder="Discord User Profile (ID)" required>
+                    <button type="button" class="btn btn-primary" style="width:100%; padding:12px; font-weight:bold; border-radius:8px;" onclick="advanceToPayment()">Generate Secure QR Link</button>
                 </div>
-                <div id="step-2" style="display: none;">
-                    <div style="background: rgba(245, 158, 11, 0.1); border: 2px dashed #f59e0b; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
-                        <p style="color: #f59e0b; font-weight: 900; margin-bottom: 10px;">1. Scan to Transfer Funds</p>
-                        <img src="1000300514.jpg" style="width: 180px; height: 180px; border-radius: 10px; border: 3px solid #1e293b; margin: 15px auto; display: block;" alt="Fampay QR">
-                        <p style="color: #00d2ff; font-weight: 900; margin: 20px 0 10px 0;">2. Enter 12-Digit UTR Number</p>
-                        <input type="text" id="m-utr" style="width: 100%; padding: 14px; background: #020617; border: 1px solid #f59e0b; border-radius: 10px; color: #fff; font-size: 16px; text-align: center; font-weight: bold; letter-spacing: 2px; box-sizing: border-box;" placeholder="e.g. 123456789012" maxlength="12" pattern="\d{12}">
+
+                <!-- STEP 2 VIEW: Instant logging gateway without UTR checks -->
+                <div id="modalStep2" style="display:none; text-align:center;">
+                    <p style="color:#f59e0b; font-size:0.9rem; margin-bottom:15px;">Scan through FamPay/UPI Node to route payment assets:</p>
+                    <img src="1000300514.jpg" style="width:180px; height:180px; border-radius:8px; border:2px solid #1e293b; margin:0 auto 20px auto; display:block;" alt="UPI QR Endpoint">
+                    
+                    <div style="background:rgba(255,255,255,0.03); border:1px dashed #334155; padding:12px; border-radius:8px; margin-bottom:20px; text-align:left;">
+                        <label style="display:flex; align-items:center; cursor:pointer; font-size:0.85rem; color:#cbd5e1;">
+                            <input type="checkbox" id="payConfirm" style="margin-right:10px;" required>
+                            I have successfully transferred the verified amount via the QR module.
+                        </label>
                     </div>
-                    <button type="submit" id="finalBtn" class="btn btn-success" style="margin-top: 15px; width: 100%; border: none;">Verify UTR & Claim Items</button>
+                    <button type="submit" id="submitOrderBtn" class="btn btn-success" style="width:100%; padding:12px; font-weight:bold; border-radius:8px; border:none; background:#10b981; color:#fff;">Confirm Transfer & Notify Staff</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        window.cartItemName = ""; window.cartItemPrice = 0;
-        function openCheckout(name, price) {
-            window.cartItemName = name; window.cartItemPrice = price;
-            document.getElementById('m-item').value = name; document.getElementById('m-price').value = "₹" + price;
-            document.getElementById('secureModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; 
+        window.activeItem = ""; window.activePrice = 0;
+        
+        function initiateCheckout(name, price) {
+            window.activeItem = name; window.activePrice = price;
+            document.getElementById('targetItem').value = name;
+            document.getElementById('targetPrice').value = "₹" + price;
+            document.getElementById('secureModal').style.display = 'flex';
         }
-        function openKeyCheckout(name, price, inputId) {
+        function initiateKeyCheckout(name, price, inputId) {
             let qty = parseInt(document.getElementById(inputId).value) || 1;
-            openCheckout(qty + "x " + name, price * qty);
+            initiateCheckout(qty + "x " + name, price * qty);
         }
-        function closeCheckout() {
-            document.getElementById('secureModal').style.display = 'none'; document.body.style.overflow = 'auto';
-            document.getElementById('step-1').style.display = 'block'; document.getElementById('step-2').style.display = 'none';
-            document.getElementById('m-utr').removeAttribute('required'); document.getElementById('checkoutForm').reset();
+        function closePipeline() {
+            document.getElementById('secureModal').style.display = 'none';
+            document.getElementById('modalStep1').style.display = 'block';
+            document.getElementById('modalStep2').style.display = 'none';
+            document.getElementById('billingForm').reset();
         }
-        function proceedToQR() {
-            if(!document.getElementById('m-ign').value || !document.getElementById('m-discord').value) {
-                alert("⚠️ Please enter your Username and Discord ID first."); return;
+        function advanceToPayment() {
+            if(!document.getElementById('p-ign').value || !document.getElementById('p-discord').value) {
+                alert("⚠️ Missing verification details. Complete all inputs."); return;
             }
-            document.getElementById('step-1').style.display = 'none'; document.getElementById('step-2').style.display = 'block';
-            document.getElementById('m-utr').setAttribute('required', 'true');
+            document.getElementById('modalStep1').style.display = 'none';
+            document.getElementById('modalStep2').style.display = 'block';
         }
-        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-            e.preventDefault(); const utr = document.getElementById('m-utr').value;
-            if(utr.length !== 12) { alert("⚠️ UTR must be exactly 12 digits."); return; }
-            const payload = { username: document.getElementById('m-ign').value, discord: document.getElementById('m-discord').value, utr: utr, item: window.cartItemName, price: window.cartItemPrice };
-            const btn = document.getElementById('finalBtn'); btn.innerText = "Connecting to Secure Node..."; btn.style.opacity = "0.7";
-            fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-            .then(r => r.json()).then(data => {
-                if(data.success) { alert("✅ Payment Logged Successfully! Staff will verify the UTR and deliver your items."); closeCheckout(); } 
-                else { alert("⚠️ " + data.message); }
-            }).catch(() => alert("⚠️ Network Error. Please check your connection."))
-            .finally(() => { btn.innerText = "Verify UTR & Claim Items"; btn.style.opacity = "1"; });
-        });
 
-        // NEW: Interactive Burst & Glow Particle System for Store Page
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null };
-
-        function resize() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        window.addEventListener('resize', resize); 
-        resize();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        window.addEventListener('click', (e) => {
-            for(let i = 0; i < 8; i++) {
-                particles.push({
-                    x: e.clientX,
-                    y: e.clientY,
-                    r: Math.random() * 4 + 1,
-                    dx: (Math.random() - 0.5) * 6,
-                    dy: (Math.random() - 0.5) * 6,
-                    op: 1,
-                    life: 80
-                });
+        document.getElementById('billingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!document.getElementById('payConfirm').checked) {
+                alert("⚠️ Acknowledge the payment confirmation checkbox to route the pipeline."); return;
             }
+
+            const btn = document.getElementById('submitOrderBtn');
+            btn.innerText = "Dispatching Intent Code..."; btn.style.opacity = "0.6";
+
+            fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: document.getElementById('p-ign').value,
+                    discord: document.getElementById('p-discord').value,
+                    item: window.activeItem,
+                    price: window.activePrice
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    alert("✅ Intent Signal Dispatched! Staff will verify the balance route and log your items on the network node.");
+                    closePipeline();
+                } else { alert("⚠️ Terminal rejection: " + data.message); }
+            })
+            .catch(() => alert("⚠️ Link pipeline dropped. Check your connection network."))
+            .finally(() => { btn.innerText = "Confirm Transfer & Notify Staff"; btn.style.opacity = "1"; });
         });
-
-        for (let i = 0; i < 60; i++) {
-            particles.push({ 
-                x: Math.random() * canvas.width, 
-                y: Math.random() * canvas.height, 
-                r: Math.random() * 2.5 + 1, 
-                dx: (Math.random() - 0.5) * 0.5,
-                dy: (Math.random() * -1.5) - 0.5, 
-                op: Math.random() * 0.5 + 0.1,
-                life: Infinity
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.x += p.dx;
-                p.y += p.dy;
-
-                if (p.life === Infinity) {
-                    if (p.y < -10) p.y = canvas.height + 10;
-                    if (p.x < -10) p.x = canvas.width + 10;
-                    if (p.x > canvas.width + 10) p.x = -10;
-                } else {
-                    p.life--;
-                    p.op -= 0.015;
-                    if (p.life <= 0) {
-                        particles.splice(i, 1);
-                        i--;
-                        continue;
-                    }
-                }
-
-                let currentOp = p.op;
-                let currentR = p.r;
-
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - p.x;
-                    let dy = mouse.y - p.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 100) {
-                        currentOp = Math.min(1, p.op + (100 - distance) / 100);
-                        currentR = p.r + ((100 - distance) / 30);
-                    }
-                }
-
-                ctx.beginPath(); 
-                ctx.arc(p.x, p.y, Math.max(0, currentR), 0, Math.PI * 2); 
-                ctx.fillStyle = `rgba(0, 210, 255, ${Math.max(0, currentOp)})`;
-                ctx.shadowBlur = currentOp > 0.6 ? 15 : 0;
-                ctx.shadowColor = "#00d2ff";
-                ctx.fill();
-            }
-            requestAnimationFrame(draw);
-        }
-        draw();
     </script>
 </body>
 </html>
+
