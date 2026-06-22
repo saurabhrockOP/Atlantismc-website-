@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Community Forums | AtlantisMC Network</title>
+    <meta name="title" content="Community Forums | AtlantisMC Network">
+    <meta name="description"
+        content="Join the conversation. Read the latest announcements, report bugs, appeal bans, and discuss all things AtlantisMC Network.">
+    <meta name="theme-color" content="#f2ca50">
+
+    <link rel="icon" type="image/x-icon" href="logo.png">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Press+Start+2P&display=block">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=block"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet" />
+
+    <style>
+        .nav-link { position: relative; transition: color 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px; background: #f2ca50; transition: all 0.3s ease; transform: translateX(-50%); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .header-gradient { background: linear-gradient(to bottom, rgba(19, 19, 20, 0.8) 0%, rgba(19, 19, 20, 0) 100%); }
+        .glass-panel { backdrop-filter: blur(20px); background: rgba(20, 20, 21, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
+        .glass-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.02; pointer-events: none; }
+        .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+        .button-shine { position: relative; overflow: hidden; }
+        .button-shine::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent); transform: rotate(45deg); transition: 0.5s; }
+        .button-shine:hover::after { left: 100%; top: 100%; }
+        .pixelated-border { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 0 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.3); }
+        .minecraft-heading { font-family: 'Orbitron', sans-serif; text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8), 0 0 30px rgba(242, 202, 80, 0.5); }
+        .pixel-text { font-family: 'Press Start 2P', monospace; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5); }
+        .forum-row { transition: background-color 0.2s ease; }
+        .forum-row:last-child { border-bottom: none; }
+    </style>
+</head>
+
+<body
+    class="bg-[#131314] text-[#e5e2e3] font-[Inter] overflow-x-hidden selection:bg-[#d4af37] selection:text-[#554300] pb-20 md:pb-0">
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#131314]/95 to-[#131314]"></div>
+        <img loading="lazy" class="w-full h-full object-cover opacity-15 scale-105"
+            data-alt="Epic cinematic render of a grand Minecraft library or forum hall"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtqd6FsqeHQ8uhu02PguKF4aCm6EdTx-tO4Nu2EKHPmrRCckpQZOkPkXAk0Y4KXwDEeETuy4YKvBb_BjOD20T_FvOaJZ9iBvDGEz48WTNkHky6LC3aqjUTt6TGObmbK_GEKjmc3J8ThR1PA-ykuimMsRSKKjzMEVn8qqzBE_nDNJNcxC66mSRQh8Uw9n3Ql1vrBI-dUhtbsjWel5uHXw8ozr9pOYaqavKPF07K0PHfq_WFTOIy_SUj_-MoodsIA_iqoKdnR2ofvVk"
+            style="filter: hue-rotate(220deg) brightness(0.7);" />
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
+            <nav
+                class="glass-panel flex items-center justify-between px-4 md:px-6 py-3 rounded-2xl border-white/5 shadow-2xl">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img loading="lazy" src="logo.png" class="h-8 md:h-10" alt="Logo">
+                </a>
+                <div class="hidden xl:flex items-center gap-6 header-nav">
+                    <a href="index.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Home</a>
+                    <a href="store.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Store</a>
+                    <a href="features.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Play</a>
+                    <a href="vote.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Vote</a>
+                    <a href="forums.html" class="nav-link text-[#f2ca50] font-[Rajdhani] font-bold text-sm tracking-widest uppercase active">Forums</a>
+                    <a href="wiki.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Wiki</a>
+                </div>
+                <div class="hidden lg:flex items-center gap-3">
+                    <!-- Auth removed -->
+                </div>
+                <button id="mobile-menu-toggle"
+                    class="xl:hidden p-2 rounded-2xl border border-white/10 text-white/80 hover:text-white"
+                    aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </nav>
+            <div id="mobile-menu"
+                class="hidden absolute inset-x-4 top-full mt-3 rounded-3xl glass-panel p-4 border-white/10 shadow-2xl z-50 xl:hidden">
+                <div class="grid gap-2">
+                    <a href="index.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Home</a>
+                    <a href="store.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Store</a>
+                    <a href="features.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Play</a>
+                    <a href="vote.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Vote</a>
+                    <a href="forums.html" class="nav-link text-[#f2ca50] font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Forums</a>
+                    <a href="wiki.html" class="nav-link text-white/70 hover:text-white font-[Rajdhani] font-bold text-sm tracking-widest uppercase">Wiki</a>
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menu = document.getElementById('mobile-menu');
+                    const toggle = document.getElementById('mobile-menu-toggle');
+                    if (toggle && menu) {
+                        toggle.addEventListener('click', function () {
+                            menu.classList.toggle('hidden');
+                        });
+                    }
+                });
+            </script>
+        </div>
+    </header>
+
+    <main class="pt-32 px-4 md:px-6 pb-12 max-w-7xl mx-auto">
+
+        <!-- Forums Hero Section -->
+        <section class="flex flex-col items-center text-center mt-8 md:mt-12 mb-10 relative">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-40 bg-[#f2ca50]/10 blur-[150px] rounded-full pointer-events-none">
+            </div>
+
+            <span
+                class="px-4 py-1.5 border border-[#f2ca50]/30 rounded-full text-xs font-[Rajdhani] text-[#f2ca50] tracking-[0.2em] whitespace-nowrap bg-[#f2ca50]/5 inline-block mb-4 shadow-[0_0_15px_rgba(242,202,80,0.2)]">THE
+                GRAND HALL</span>
+
+            <h1
+                class="minecraft-heading text-4xl sm:text-5xl md:text-7xl text-white tracking-tighter leading-none mb-6">
+                COMMUNITY <br /><span class="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">FORUMS</span>
+            </h1>
+
+            <!-- Global Search Bar -->
+            <div class="w-full max-w-2xl relative mt-4">
+                <input type="text" placeholder="Search discussions, members, or support threads..."
+                    class="w-full bg-zinc-950/80 border border-white/10 text-white font-[Rajdhani] px-6 py-4 rounded-xl focus:border-[#f2ca50] focus:ring-1 focus:ring-[#f2ca50] outline-none transition-all placeholder-zinc-500 shadow-xl">
+                <button
+                    class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-[#f2ca50] bg-[#f2ca50]/10 rounded-lg hover:bg-[#f2ca50]/20 transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Forum Layout (Grid) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+
+            <!-- Left Column: Categories (75% width on desktop) -->
+            <div class="lg:col-span-2 space-y-8">
+
+                <!-- Category Group 1: Official Server Information -->
+                <div class="glass-panel rounded-3xl border-white/5 overflow-hidden">
+                    <div class="bg-zinc-900/50 px-6 py-4 border-b border-white/10 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[#f2ca50]">local_police</span>
+                        <h2 class="text-lg font-bold text-white font-minecraft uppercase italic tracking-tighter">
+                            Official Information</h2>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div
+                            class="forum-row flex items-center gap-4 p-5 md:px-6 border-b border-white/5 hover:bg-white/5 cursor-pointer group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#f2ca50]/10 flex-shrink-0 flex items-center justify-center text-[#f2ca50] shadow-[0_0_10px_rgba(242,202,80,0.1)] group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">campaign</span>
+                            </div>
+                            <div class="flex-grow">
+                                <a href="forum-thread.html">
+                                    <h4
+                                        class="font-bold text-white text-base md:text-lg font-[Rajdhani] uppercase tracking-wide group-hover:text-[#f2ca50] transition-colors">
+                                        News & Announcements</h4>
+                                    <p class="text-xs md:text-sm text-zinc-400 font-[Rajdhani]">Official server updates,
+                                        changelogs, and important news from the administration team.</p>
+                                </a>
+                            </div>
+                            <div class="hidden sm:block text-right shrink-0 min-w-[80px]">
+                                <div class="text-sm font-bold text-white font-[Rajdhani]">1.2k</div>
+                                <div class="text-[10px] text-zinc-500 uppercase tracking-widest font-[Rajdhani]">Posts</div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="forum-row flex items-center gap-4 p-5 md:px-6 border-b border-white/5 hover:bg-white/5 cursor-pointer group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#9fd8e4]/10 flex-shrink-0 flex items-center justify-center text-[#9fd8e4] shadow-[0_0_10px_rgba(159,216,228,0.1)] group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">event_available</span>
+                            </div>
+                            <div class="flex-grow">
+                                <a href="forum-thread.html">
+                                    <h4
+                                        class="font-bold text-white text-base md:text-lg font-[Rajdhani] uppercase tracking-wide group-hover:text-[#9fd8e4] transition-colors">
+                                        Events & Giveaways</h4>
+                                    <p class="text-xs md:text-sm text-zinc-400 font-[Rajdhani]">Participate in community
+                                        events,
+                                        build battles, and enter official server giveaways.</p>
+                                </a>
+                            </div>
+                            <div class="hidden sm:block text-right shrink-0 min-w-[80px]">
+                                <div class="text-sm font-bold text-white font-[Rajdhani]">452</div>
+                                <div class="text-[10px] text-zinc-500 uppercase tracking-widest font-[Rajdhani]">Posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Group 2: The Community -->
+                <div class="glass-panel rounded-3xl border-white/5 overflow-hidden">
+                    <div class="bg-zinc-900/50 px-6 py-4 border-b border-white/10 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[#66dd8b]">groups</span>
+                        <h2 class="text-lg font-bold text-white font-minecraft uppercase italic tracking-tighter">The
+                            Community</h2>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div
+                            class="forum-row flex items-center gap-4 p-5 md:px-6 border-b border-white/5 hover:bg-white/5 cursor-pointer group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-zinc-500/10 flex-shrink-0 flex items-center justify-center text-zinc-400 shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">forum</span>
+                            </div>
+                            <div class="flex-grow">
+                                <a href="forum-thread.html">
+                                    <h4
+                                        class="font-bold text-white text-base md:text-lg font-[Rajdhani] uppercase tracking-wide group-hover:text-white transition-colors">
+                                        General Discussion</h4>
+                                    <p class="text-xs md:text-sm text-zinc-400 font-[Rajdhani]">Talk about anything related to
+                                        the
+                                        network, share your creations, and meet new players.</p>
+                                </a>
+                            </div>
+                            <div class="hidden sm:block text-right shrink-0 min-w-[80px]">
+                                <div class="text-sm font-bold text-white font-[Rajdhani]">18.5k</div>
+                                <div class="text-[10px] text-zinc-500 uppercase tracking-widest font-[Rajdhani]">Posts</div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="forum-row flex items-center gap-4 p-5 md:px-6 border-b border-white/5 hover:bg-white/5 cursor-pointer group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-purple-500/10 flex-shrink-0 flex items-center justify-center text-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.1)] group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">lightbulb</span>
+                            </div>
+                            <div class="flex-grow">
+                                <a href="forum-thread.html">
+                                    <h4
+                                        class="font-bold text-white text-base md:text-lg font-[Rajdhani] uppercase tracking-wide group-hover:text-purple-400 transition-colors">
+                                        Suggestions</h4>
+                                    <p class="text-xs md:text-sm text-zinc-400 font-[Rajdhani]">Have a brilliant idea for the
+                                        server? Post it here and let the community vote on it.</p>
+                                </a>
+                            </div>
+                            <div class="hidden sm:block text-right shrink-0 min-w-[80px]">
+                                <div class="text-sm font-bold text-white font-[Rajdhani]">3.2k</div>
+                                <div class="text-[10px] text-zinc-500 uppercase tracking-widest font-[Rajdhani]">Posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Group 3: Support Center -->
+                <div class="glass-panel rounded-3xl border-white/5 overflow-hidden">
+                    <div class="bg-zinc-900/50 px-6 py-4 border-b border-white/10 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-red-500">support_agent</span>
+                        <h2 class="text-lg font-bold text-white font-minecraft uppercase italic tracking-tighter">
+                            Support & Appeals</h2>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div
+                            class="forum-row flex items-center gap-4 p-5 md:px-6 border-b border-white/5 hover:bg-white/5 cursor-pointer group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-orange-500/10 flex-shrink-0 flex items-center justify-center text-orange-400 shadow-[0_0_10px_rgba(249,115,22,0.1)] group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">live_help</span>
+                            </div>
+                            <div class="flex-grow">
+                                <a href="forum-thread.html">
+                                    <h4
+                                        class="font-bold text-white text-base md:text-lg font-[Rajdhani] uppercase tracking-wide group-hover:text-orange-400 transition-colors">
+                                        Community Support</h4>
+                                    <p class="text-xs md:text-sm text-zinc-400 font-[Rajdhani]">Need help with a command or
+                                        plugin? Ask the community and staff team for assistance here.</p>
+                                </a>
+                            </div>
+                            <div class="hidden sm:block text-right shrink-0 min-w-[80px]">
+                                <div
