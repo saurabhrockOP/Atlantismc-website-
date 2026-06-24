@@ -10,7 +10,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1509503321730322533/_5O-ubMnc25DAH2lXU4TMhCMLTOkJAvudcqA-bN_PlPGHXCnmwC4gW-X1NLvovq9fZ3g';
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1519352083130613790/xH5vPmeJS9qPRp1i-OfEgvZ0jCh5qHWRr9IZV9l6whEp-TML_ejv1yIuGBR0kfGFO_LV';
 
 app.use(helmet({
     contentSecurityPolicy: false
