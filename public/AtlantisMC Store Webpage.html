@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlantisMC | Store</title>
+    
+    <!-- Brace Template ki CSS link -->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="nav-logo.png" type="image/png">
+
+    <style>
+        /* Hamara Secure Checkout Modal (Brace theme ke colors ke hisaab se) */
+        #secureModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); z-index: 99999; align-items: center; justify-content: center;
+        }
+        .modal-box {
+            background: #111; border: 2px solid #ffaa00; border-radius: 10px; width: 100%; max-width: 450px;
+            padding: 30px; color: #fff; font-family: sans-serif;
+        }
+        .modal-input {
+            width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; margin-bottom: 15px; border-radius: 5px; box-sizing: border-box;
+        }
+        .btn-gold {
+            width: 100%; padding: 12px; background: #ffaa00; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-gold:hover { background: #ffcc00; }
+        .store-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px; }
+        .store-card { background: #1a1a1a; border: 1px solid #333; padding: 20px; border-radius: 8px; text-align: center; width: 250px; }
+        .crate-card { border-color: #555; }
+    </style>
+</head>
+<body>
+
+    <!-- Brace Template ka Header/Navbar yahan aap copy kar sakte ho apni index.html se -->
+    <header style="text-align: center; padding: 50px 20px;">
+        <a href="/" style="color: #ffaa00; text-decoration: none; font-weight: bold;">← Back to Home</a>
+        <br><br>
+        <img src="logo.png" alt="AtlantisMC" style="max-width: 250px;">
+        <h1 style="color: #fff; margin-top: 20px;">Premium Store</h1>
+    </header>
+
+    <main style="max-width: 1000px; margin: 0 auto; padding: 20px; color: #fff;">
+        
+        <!-- RANKS SECTION -->
+        <h2 style="text-align: center; color: #ffaa00;">Donator Ranks</h2>
+        <div class="store-grid">
+            <div class="store-card">
+                <h3>Warrior Rank</h3>
+                <h2 style="color: #00ff00;">₹100</h2>
+                <button class="btn-gold" onclick="openCheckout('Warrior Rank', 100)">Buy Now</button>
+            </div>
+            <div class="store-card">
+                <h3>Knight Rank</h3>
+                <h2 style="color: #00ff00;">₹150</h2>
+                <button class="btn-gold" onclick="openCheckout('Knight Rank', 150)">Buy Now</button>
+            </div>
+            <div class="store-card">
+                <h3>Legend Rank</h3>
+                <h2 style="color: #00ff00;">₹200</h2>
+                <button class="btn-gold" onclick="openCheckout('Legend Rank', 200)">Buy Now</button>
+            </div>
+            <div class="store-card">
+                <h3>Eclipse Rank</h3>
+                <h2 style="color: #00ff00;">₹250</h2>
+                <button class="btn-gold" onclick="openCheckout('Eclipse Rank', 250)">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- CRATE KEYS SECTION -->
+        <h2 style="text-align: center; color: #ffaa00; margin-top: 60px;">Crate Keys</h2>
+        <div class="store-grid">
+            <div class="store-card crate-card">
+                <h3 style="color: #ffcc00;">Mega Crate Key</h3>
+                <h2 style="color: #00ff00;">₹30</h2>
+                <button class="btn-gold" onclick="openCheckout('Mega Crate Key', 30)">Buy Now</button>
+            </div>
+            <div class="store-card crate-card">
+                <h3 style="color: #00ccff;">Monthly Crate Key</h3>
+                <h2 style="color: #00ff00;">₹20</h2>
+                <button class="btn-gold" onclick="openCheckout('Monthly Crate Key', 20)">Buy Now</button>
+            </div>
+            <div class="store-card crate-card">
+                <h3 style="color: #ff8800;">OP Crate Key</h3>
+                <h2 style="color: #00ff00;">₹10</h2>
+                <button class="btn-gold" onclick="openCheckout('OP Crate Key', 10)">Buy Now</button>
+            </div>
+            <div class="store-card crate-card">
+                <h3 style="color: #ff55ff;">Party Crate Key</h3>
+                <h2 style="color: #00ff00;">₹5</h2>
+                <button class="btn-gold" onclick="openCheckout('Party Crate Key', 5)">Buy Now</button>
+            </div>
+            <div class="store-card crate-card">
+                <h3 style="color: #55ff55;">Vote Crate Key</h3>
+                <h2 style="color: #00ff00;">₹2</h2>
+                <button class="btn-gold" onclick="openCheckout('Vote Crate Key', 2)">Buy Now</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- HAMARA NAYA BRAIN: Direct QR Modal (No UTR) -->
+    <div id="secureModal">
+        <div class="modal-box">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: #ffaa00;">Checkout</h3>
+                <span onclick="closeModal()" style="cursor: pointer; font-size: 1.5rem;">&times;</span>
+            </div>
+            
+            <form id="billingForm">
+                <input type="text" id="targetItem" class="modal-input" readonly>
+                <input type="text" id="targetPrice" class="modal-input" style="color: #00ff00; font-weight: bold;" readonly>
+                
+                <div id="step1">
+                    <input type="text" id="p-ign" class="modal-input" placeholder="Minecraft Username" required>
+                    <input type="text" id="p-discord" class="modal-input" placeholder="Discord ID" required>
+                    <button type="button" class="btn-gold" onclick="nextStep()">Proceed</button>
+                </div>
+
+                <div id="step2" style="display: none; text-align: center;">
+                    <p style="color: #ccc; font-size: 0.9rem;">Scan and pay using any UPI app:</p>
+                    <img src="1000300514.jpg" alt="UPI QR" style="width: 200px; border-radius: 10px; margin-bottom: 20px;">
+                    
+                    <label style="display: block; text-align: left; font-size: 0.85rem; color: #aaa; margin-bottom: 20px;">
+                        <input type="checkbox" id="payConfirm" required> I have scanned the QR and paid the exact amount.
+                    </label>
+                    <button type="submit" id="submitBtn" class="btn-gold">Notify Staff & Claim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.itemName = ""; window.itemPrice = 0;
+        
+        function openCheckout(name, price) {
+            window.itemName = name; window.itemPrice = price;
+            document.getElementById('targetItem').value = name;
+            document.getElementById('targetPrice').value = "₹" + price;
+            document.getElementById('secureModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('secureModal').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('billingForm').reset();
+        }
+        function nextStep() {
+            if(!document.getElementById('p-ign').value || !document.getElementById('p-discord').value) {
+                alert("Please enter IGN and Discord."); return;
+            }
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }
+
+        document.getElementById('billingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!document.getElementById('payConfirm').checked) return;
+
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing..."; btn.style.opacity = "0.7";
+
+            fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: document.getElementById('p-ign').value,
+                    discord: document.getElementById('p-discord').value,
+                    item: window.itemName,
+                    price: window.itemPrice
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    alert("✅ Success! Request sent to staff. Please wait while we verify the payment.");
+                    closeModal();
+                } else { alert("Error: " + data.message); }
+            })
+            .catch(() => alert("Network Error!"))
+            .finally(() => { btn.innerText = "Notify Staff & Claim"; btn.style.opacity = "1"; });
+        });
+    </script>
+</body>
+</html>
